@@ -1,0 +1,51 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: Put the green block on the orange block
+```generated:
+put_first_on_second("green block", "orange block")
+```
+```gold:
+put_first_on_second("green block", "orange block")
+```
+========= step 2 =========
+# query: place the black block in the golden bowl
+```generated:
+put_first_on_second("black block", "golden bowl")
+```
+```gold:
+put_first_on_second("black block", "golden bowl")
+```
+========= step 3 =========
+# query: put the white block in the silver bowl
+```generated:
+put_first_on_second("white block", "silver bowl")
+```
+```gold:
+put_first_on_second("white block", "silver bowl")
+```
+========= step 4 =========
+# query: place the block in the golden bowl on the green block
+```generated:
+put_first_on_second("black block", "golden bowl")
+put_first_on_second("black block", "green block")
+```
+```gold:
+put_first_on_second("black block", "green block")
+```
+========= step 5 =========
+# query: what is the color of the block right above the orange block
+```generated:
+
+```
+```gold:
+say("green block")
+```
+========= step 6 =========
+# query: is the white block in a higher position than the black block
+```generated:
+say("no")
+```
+```gold:
+say("no")
+```

@@ -1,0 +1,8 @@
+In the following, the robot deals with dirty and clean blocks.
+A clean block becomes dirty when it touches another dirty block.
+This includes when a dirty block is stacked on top of a clean block, and also when a dirty block is right under a clean block.
+The table, bowls and the robot gripper are protected from any dirtiness, so they stay clean forever.
+When a dirty block is put into the disinfector, it becomes clean immediately.
+
+Your task is to maintain the status of these items using a JSON dictionary and update the status of the corresponding items after a new query.
+This JSON dictionary will be commented, meaning that the starting character of each line is #.

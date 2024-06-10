@@ -1,0 +1,103 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: the green block is dirty.
+```generated:
+noop()
+```
+```gold:
+update_wm("the green block is dirty.")
+```
+========= step 2 =========
+# query: Put the green block in the transparent bowl
+```generated:
+put_first_on_second("green block", "transparent bowl")
+```
+```gold:
+put_first_on_second("green block", "transparent bowl")
+update_wm("Put the green block in the transparent bowl.")
+```
+========= step 3 =========
+# query: the pink block and the blue block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the pink block and the blue block are clean.")
+```
+========= step 4 =========
+# query: Put the green block on the table.
+```generated:
+put_first_on_second("green block", "table")
+```
+```gold:
+put_first_on_second("green block", "table")
+update_wm("Put the green block on the table.")
+```
+========= step 5 =========
+# query: Put the pink block on the green block
+```generated:
+put_first_on_second("pink block", "green block")
+```
+```gold:
+put_first_on_second("pink block", "green block")
+update_wm("Put the pink block on the green block. the pink block becomes dirty.")
+```
+========= step 6 =========
+# query: Put the green block and the pink block in the disinfector
+```generated:
+put_first_on_second("green block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+```
+```gold:
+put_first_on_second("green block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+update_wm("Put the green block and the pink block in the disinfector. the green block and the pink block become clean.")
+```
+========= step 7 =========
+# query: Put the pink block in the platinum bowl
+```generated:
+put_first_on_second("pink block", "platinum bowl")
+```
+```gold:
+put_first_on_second("pink block", "platinum bowl")
+update_wm("Put the pink block in the platinum bowl.")
+```
+========= step 8 =========
+# query: Put the pink block on the table.
+```generated:
+put_first_on_second("pink block", "table")
+```
+```gold:
+put_first_on_second("pink block", "table")
+update_wm("Put the pink block on the table.")
+```
+========= step 9 =========
+# query: Put the green block on the pink block
+```generated:
+put_first_on_second("green block", "pink block")
+```
+```gold:
+put_first_on_second("green block", "pink block")
+update_wm("Put the green block on the pink block.")
+```
+========= step 10 =========
+# query: Put the blue block on the green block
+```generated:
+put_first_on_second("blue block", "green block")
+```
+```gold:
+put_first_on_second("blue block", "green block")
+update_wm("Put the blue block on the green block.")
+```
+========= step 11 =========
+# query: Put all the clean blocks on the table.
+```generated:
+
+```
+```gold:
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the green block, the pink block, and the blue block on the relations.")
+```

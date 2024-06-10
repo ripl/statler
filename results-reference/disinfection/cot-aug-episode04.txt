@@ -1,0 +1,177 @@
+========= step 0 =========
+# state = {
+#     "objects": ["green block", "white block", "black block", "purple block", "cyan block", "rust bowl", "magenta bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {}, 
+#     "white block": {}, 
+#     "black block": {}, 
+#     "purple block": {}, 
+#     "cyan block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}
+# }
+========= step 1 =========
+# query: the green block is dirty.
+```generated:
+update_wm("The green block is dirty")
+```
+```gold:
+update_wm("the green block is dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "purple block", "cyan block", "rust bowl", "magenta bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {"is": ["dirty"]}, 
+#     "white block": {}, 
+#     "black block": {}, 
+#     "purple block": {}, 
+#     "cyan block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}
+# }
+========= step 2 =========
+# query: the white block is dirty.
+```generated:
+update_wm("The white block is dirty")
+```
+```gold:
+update_wm("the white block is dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "purple block", "cyan block", "rust bowl", "magenta bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {"is": ["dirty"]}, 
+#     "white block": {"is": ["dirty"]}, 
+#     "black block": {}, 
+#     "purple block": {}, 
+#     "cyan block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}
+# }
+========= step 3 =========
+# query: the black block is dirty.
+```generated:
+extend context window.
+```
+```gold:
+update_wm("the black block is dirty.")
+```
+
+# state = {}
+========= step 4 =========
+# query: the purple block is clean.
+```generated:
+extend context window.
+```
+```gold:
+update_wm("the purple block is clean.")
+```
+
+# state = {}
+========= step 5 =========
+# query: the cyan block is clean.
+```generated:
+extend context window.
+```
+```gold:
+update_wm("the cyan block is clean.")
+```
+
+# state = {}
+========= step 6 =========
+# query: Put the green block in the rust bowl
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "rust bowl")
+update_wm("Put the green block in the rust bowl.")
+```
+
+# state = {}
+========= step 7 =========
+# query: Put the blue block in the magenta bowl
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("blue block", "magenta bowl")
+update_wm("Put the blue block in the magenta bowl.")
+```
+
+# state = {}
+========= step 8 =========
+# query: Put the green block on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "table")
+update_wm("Put the green block on the table.")
+```
+
+# state = {}
+========= step 9 =========
+# query: Put the purple block on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("purple block", "table")
+update_wm("Put the purple block on the table.")
+```
+
+# state = {}
+========= step 10 =========
+# query: Put the white block on the green block
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("white block", "green block")
+update_wm("Put the white block on the green block.")
+```
+
+# state = {}
+========= step 11 =========
+# query: Put the cyan block on the white block
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("cyan block", "white block")
+update_wm("Put the cyan block on the white block. the cyan block becomes dirty.")
+```
+
+# state = {}
+========= step 12 =========
+# query: Put the black block on the purple block
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("black block", "purple block")
+update_wm("Put the black block on the purple block. the purple block becomes dirty.")
+```
+
+# state = {}
+========= step 13 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "table")
+put_first_on_second("white block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("purple block", "table")
+put_first_on_second("cyan block", "table")
+update_wm("Put the green block, the white block, the black block, the purple block, and the cyan block on the relations.")
+```
+
+# state = {}

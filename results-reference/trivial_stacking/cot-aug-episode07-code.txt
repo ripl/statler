@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: The white block is on the orange block which is above the cyan block
+say("orange block")
+---------
+>> gold
+say("green block")
+---------

@@ -1,0 +1,29 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+if "bronze bowl" in state["objects"]:
+    put_first_on_second("yellow block", "bronze bowl")
+    update_wm("Put the yellow block in the bronze bowl")
+elif "plastic bowl" in state["objects"]:
+    put_first_on_second("yellow block", "plastic bowl")
+    update_wm("Put the yellow block in the plastic bowl")
+else:
+    say("There is no empty bowl")
+---------
+>> gold
+put_first_on_second("yellow block", "bronze bowl")
+---------
+========= step 6 =========
+>> generated
+def put_green_on_bronze():
+    if "bronze block" in state["plastic bowl"]["contains"]:
+        put_first_on_second("green block", "bronze block")
+        update_wm("Put the green block on the bronze block")
+    else:
+        say("The bronze block is not in the plastic bowl")
+
+put_green_on_bronze()
+---------
+>> gold
+put_first_on_second("green block", "bronze block")
+---------

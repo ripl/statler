@@ -1,0 +1,28 @@
+========= step 0 =========
+========= step 3 =========
+>> generated
+put_first_on_second("blue block", "brown block")
+update_wm("Put the blue block on the brown block")
+---------
+>> gold
+put_first_on_second("blue block", "brown bowl")
+---------
+========= step 4 =========
+>> generated
+# THINK: The silver bowl contains the red block
+put_first_on_second("red block", "silver bowl")
+update_wm("Put the red block on the blue block")
+---------
+>> gold
+put_first_on_second("red block", "blue block")
+---------
+========= step 6 =========
+>> generated
+# THINK: The blue block is on the brown block which is on the table
+# THINK: The white block is in the golden bowl which is on the table
+# THINK: Thus the white block is in a higher position
+say("yes")
+---------
+>> gold
+say("no")
+---------

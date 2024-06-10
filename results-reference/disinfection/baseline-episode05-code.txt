@@ -1,0 +1,27 @@
+========= step 0 =========
+========= step 9 =========
+>> generated
+put_first_on_second("red block", "table")
+put_first_on_second("green block", "table")
+---------
+>> gold
+put_first_on_second("red block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the red block, the green block, the pink block, and the blue block on the relations.")
+---------
+========= step 10 =========
+>> generated
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("green block", "disinfector")
+---------
+>> gold
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("red block", "disinfector")
+update_wm("Put the red block, the pink block, the blue block, and the red block in the disinfector. the red block, the pink block, the blue block, and the red block become clean.")
+---------

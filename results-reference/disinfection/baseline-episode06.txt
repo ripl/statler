@@ -1,0 +1,92 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: the blue block and the black block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the blue block and the black block are clean.")
+```
+========= step 2 =========
+# query: Put the black block in the rust bowl
+```generated:
+put_first_on_second("black block", "rust bowl")
+```
+```gold:
+put_first_on_second("black block", "rust bowl")
+update_wm("Put the black block in the rust bowl.")
+```
+========= step 3 =========
+# query: the pink block and the teal block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the pink block and the teal block are clean.")
+```
+========= step 4 =========
+# query: Put the blue block and the black block in the disinfector
+```generated:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("black block", "disinfector")
+```
+```gold:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("black block", "disinfector")
+update_wm("Put the blue block and the black block in the disinfector. the blue block and the black block become clean.")
+```
+========= step 5 =========
+# query: the red block is dirty.
+```generated:
+noop()
+```
+```gold:
+update_wm("the red block is dirty.")
+```
+========= step 6 =========
+# query: Put the red block in the tan bowl
+```generated:
+put_first_on_second("red block", "tan bowl")
+```
+```gold:
+put_first_on_second("red block", "tan bowl")
+update_wm("Put the red block in the tan bowl.")
+```
+========= step 7 =========
+# query: Put the red block on the table.
+```generated:
+put_first_on_second("red block", "table")
+```
+```gold:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table.")
+```
+========= step 8 =========
+# query: Put the black block on the red block
+```generated:
+put_first_on_second("black block", "red block")
+```
+```gold:
+put_first_on_second("black block", "red block")
+update_wm("Put the black block on the red block. the black block becomes dirty.")
+```
+========= step 9 =========
+# query: Put the blue block on the black block
+```generated:
+put_first_on_second("blue block", "black block")
+```
+```gold:
+put_first_on_second("blue block", "black block")
+update_wm("Put the blue block on the black block. the blue block becomes dirty.")
+```
+========= step 10 =========
+# query: Put all the clean blocks in the tan bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("pink block", "tan bowl")
+put_first_on_second("teal block", "tan bowl")
+update_wm("Put the pink block and the teal block in the tan bowl")
+```

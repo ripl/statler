@@ -1,0 +1,22 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+
+---------
+>> gold
+put_first_on_second("blue block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("white block", "table")
+put_first_on_second("black block", "table")
+update_wm("Put the blue block, the green block, the white block, and the black block on the relations.")
+---------
+========= step 11 =========
+>> generated
+put_first_on_second("black block", "table")
+put_first_on_second("red block", "table")
+---------
+>> gold
+put_first_on_second("blue block", "table")
+put_first_on_second("red block", "table")
+update_wm("Put the blue block and the red block on the relations.")
+---------

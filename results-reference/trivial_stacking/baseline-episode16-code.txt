@@ -1,0 +1,22 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+put_first_on_second("yellow block", "empty bowl")
+---------
+>> gold
+put_first_on_second("yellow block", "bronze bowl")
+---------
+========= step 7 =========
+>> generated
+
+---------
+>> gold
+say("bronze block")
+---------
+========= step 8 =========
+>> generated
+say("three blocks")
+---------
+>> gold
+say("there are two blocks")
+---------

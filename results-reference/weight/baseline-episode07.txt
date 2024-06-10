@@ -1,0 +1,58 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: Put the bronze block in the purple bowl
+```generated:
+put_first_on_second("bronze block", "purple bowl")
+```
+```gold:
+put_first_on_second("bronze block", "purple bowl")
+```
+========= step 2 =========
+# query: The silver block is twice the weight of the green block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 3 =========
+# query: The red block is twice the weight of the bronze block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+========= step 5 =========
+# query: The green block is one-thrid the weight of the bronze block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 6 =========
+# query: Put the green block in the purple bowl
+```generated:
+put_first_on_second("green block", "purple bowl")
+```
+```gold:
+put_first_on_second("green block", "purple bowl")
+```
+========= step 7 =========
+# query: Put blocks in the purple bowl so that their total weight becomes identical to what is in the gray bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("silver block", "purple bowl")
+```

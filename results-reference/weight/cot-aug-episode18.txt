@@ -1,0 +1,139 @@
+========= step 0 =========
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “gold block": {},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 1 =========
+# query: The green block has the same weight as the white block
+```generated:
+update_wm("The green block has the same weight as the white block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {},
+#     “gold block": {},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 2 =========
+# query: The white block is twice the weight of the black block
+```generated:
+update_wm("The white block has twice the weight of the black block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {"weight": white_block.weight / 2},
+#     “gold block": {},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 3 =========
+# query: The orange block is half the weight of the green block
+```generated:
+update_wm("The orange block has half the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {"weight": green_block.weight / 2},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {"weight": white_block.weight / 2},
+#     “gold block": {},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 4 =========
+# query: The gold block is ten times the weight of the green block
+```generated:
+update_wm("The gold block has ten times the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {"weight": green_block.weight / 2},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {"weight": white_block.weight / 2},
+#     “gold block": {"weight": green_block.weight * 10},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 5 =========
+# query: Put the gold block in the transparent bowl
+```generated:
+put_first_on_second("gold block", "transparent bowl")
+update_wm("Put the gold block in the transparent bowl")
+```
+```gold:
+put_first_on_second("gold block", "transparent bowl")
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {"weight": green_block.weight / 2},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {"weight": white_block.weight / 2},
+#     “gold block": {"weight": green_block.weight * 10},
+#     “transparent bowl”: {"contains": ["gold block"]},
+#     "green bowl": {},
+# }
+========= step 6 =========
+# query: Put as much blocks as you can in the green bowl until their total weight becomes greater than what is in the transparent bowl
+```generated:
+# THINK: In the transparent bowl, we have gold block
+# THINK: In the green bowl, we have nothing
+# THINK: The gold block has weight `green_block.weight * 10`
+# THINK: We need to place blocks that have `green_block.weight * 10`
+# THINK: The blocks that have the weight `green_block.weight * 10` are white block and orange block
+put_first_on_second("white block", "green bowl")
+put_first_on_second("orange block", "green bowl")
+update_wm("Put the white block and orange block in the green bowl")
+```
+```gold:
+put_first_on_second("black block", "green bowl")
+            put_first_on_second("white block", "green bowl"),
+            put_first_on_second("green block", "green bowl"),
+            put_first_on_second("orange block", "green bowl")
+```
+
+# state = {
+#     "objects" = ["green block", "orange block", "white block", "black block", “gold block", "transparent bowl", "green bowl", "table"],
+#     "relations": [],
+#     “green block": {"weight": white_block.weight},
+#     “orange block": {"weight": green_block.weight / 2},
+#     “white block": {"weight": green_block.weight},
+#     “black block": {"

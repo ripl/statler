@@ -1,0 +1,191 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "green block": {},
+#     "blue block": {},
+#     "red block": {},
+#     "rust bowl": {},
+#     "magenta bowl": {}
+# }
+
+========= step 1 =========
+# query: the blue block and the green block are dirty.
+```generated:
+update_wm("The blue and green blocks are dirty")
+```
+```gold:
+update_wm("the blue block and the green block are dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector"],
+#      "relations": [],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {},
+#      "rust bowl": {},
+#      "magenta bowl": {}
+#  }
+========= step 2 =========
+# query: The other blocks are clean
+```generated:
+update_wm("The red block is clean")
+```
+```gold:
+update_wm("the red block is clean.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector"],
+#      "relations": [],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {}
+#  }
+========= step 3 =========
+# query: Put all the clean blocks on the table.
+```generated:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table")
+```
+```gold:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"]],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }
+========= step 4 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+put_first_on_second("green block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the green and blue blocks on the table")
+```
+```gold:
+put_first_on_second("blue block", "table")
+put_first_on_second("green block", "table")
+update_wm("Put the blue block and the green block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "table"], ["blue block", "table"]],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }
+========= step 5 =========
+# query: Put the blue block on the green block
+```generated:
+put_first_on_second("blue block", "green block")
+update_wm("Put the blue block on the green block")
+```
+```gold:
+put_first_on_second("blue block", "green block")
+update_wm("Put the blue block on the green block.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "table"], ["blue block", "green block"]],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }
+========= step 6 =========
+# query: Put the green block on the blue block
+```generated:
+put_first_on_second("green block", "blue block")
+update_wm("Put the green block on the blue block")
+```
+```gold:
+put_first_on_second("green block", "blue block")
+update_wm("Put the green block on the blue block.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "blue block"], ["blue block", "table"]],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": true},
+#      "blue block": {"dirty": true},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }
+========= step 7 =========
+# query: Put the blue block and the green block in the disinfector
+```generated:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("green block", "disinfector")
+update_wm("Put the blue and green blocks in the disinfector")
+```
+```gold:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("green block", "disinfector")
+update_wm("Put the blue block and the green block in the disinfector. the blue block and the green block become clean.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "blue block"], ["blue block", "table"]],
+#      "disinfector": {"contains": ["green block", "blue block"]},
+#      "green block": {"dirty": false},
+#      "blue block": {"dirty": false},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }
+========= step 8 =========
+# query: Put all the clean blocks on the table.
+```generated:
+# THINK: The clean blocks are green block and blue block
+put_first_on_second("green block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the green and blue blocks on the table")
+```
+```gold:
+put_first_on_second("blue block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("red block", "table")
+update_wm("Put the blue block, the green block, and the red block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "blue block", "red block", "rust bowl", "magenta bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "blue block"], ["green block", "table"], ["blue block", "table"]],
+#      "disinfector": {"contains": []},
+#      "green block": {"dirty": false},
+#      "blue block": {"dirty": false},
+#      "red block": {"dirty": false},
+#      "rust bowl": {},
+#      "magenta bowl": {},
+#      "table": {}
+#  }

@@ -1,0 +1,21 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The gray block is on the white block which is on the table
+# THINK: The red block is on the orange block which is in the plastic bowl
+# THINK: Thus, there is one block in a lower position
+say("one block")
+---------
+>> gold
+say("two blocks")
+---------
+========= step 6 =========
+>> generated
+# THINK: The gray block is on the white block which is on the table
+# THINK: The red block is on the orange block which is in the plastic bowl
+# THINK: Thus, there is one block in a higher position than the gray block
+say("one block")
+---------
+>> gold
+say("no blocks are in positions higher than the gray block")
+---------

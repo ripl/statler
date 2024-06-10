@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The stack is the red block on top of the blue block
+say("red")
+---------
+>> gold
+say("red)
+---------

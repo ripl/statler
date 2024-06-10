@@ -1,0 +1,15 @@
+========= step 0 =========
+========= step 9 =========
+>> generated
+# THINK: In the gray bowl, we have red block and transparent block
+# THINK: In the white bowl, we have orange block and green block
+# THINK: The orange block has half the weight of the red block
+# THINK: The green block has half the weight of the transparent block
+# THINK: We need to remove a block that has `red_block.weight / 2`
+# THINK: The block that has the weight `red_block.weight / 2` is orange block
+put_first_on_second("orange block", "table")
+update_wm("Put the orange block on the table")
+---------
+>> gold
+put_first_on_second("transparent block", "table")
+---------

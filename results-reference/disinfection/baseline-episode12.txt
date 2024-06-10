@@ -1,0 +1,92 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: the teal block and the black block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the teal block and the black block are clean.")
+```
+========= step 2 =========
+# query: the cyan block and the purple block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the cyan block and the purple block are clean.")
+```
+========= step 3 =========
+# query: The other blocks are dirty
+```generated:
+noop()
+```
+```gold:
+update_wm("the blue block is dirty.")
+```
+========= step 4 =========
+# query: Put the cyan block on the blue block
+```generated:
+put_first_on_second("cyan block", "blue block")
+```
+```gold:
+put_first_on_second("cyan block", "blue block")
+update_wm("Put the cyan block on the blue block. the cyan block becomes dirty.")
+```
+========= step 5 =========
+# query: Woops, somebody accidentally polluted the teal block
+```generated:
+noop()
+```
+```gold:
+update_wm("the teal block become dirty.")
+```
+========= step 6 =========
+# query: Put the teal block on the black block
+```generated:
+put_first_on_second("teal block", "black block")
+```
+```gold:
+put_first_on_second("teal block", "black block")
+update_wm("Put the teal block on the black block. the black block becomes dirty.")
+```
+========= step 7 =========
+# query: Put the teal block in the tan bowl
+```generated:
+put_first_on_second("teal block", "tan bowl")
+```
+```gold:
+put_first_on_second("teal block", "tan bowl")
+update_wm("Put the teal block in the tan bowl.")
+```
+========= step 8 =========
+# query: Put the teal block on the table.
+```generated:
+put_first_on_second("teal block", "table")
+```
+```gold:
+put_first_on_second("teal block", "table")
+update_wm("Put the teal block on the table.")
+```
+========= step 9 =========
+# query: Put the black block on the teal block
+```generated:
+put_first_on_second("black block", "teal block")
+```
+```gold:
+put_first_on_second("black block", "teal block")
+update_wm("Put the black block on the teal block.")
+```
+========= step 10 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+put_first_on_second("cyan block", "table")
+put_first_on_second("purple block", "table")
+```
+```gold:
+put_first_on_second("teal block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("cyan block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the teal block, the black block, the cyan block, and the blue block on the relations.")
+```

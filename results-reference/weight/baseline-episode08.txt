@@ -1,0 +1,50 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: Put the pink block in the white bowl
+```generated:
+put_first_on_second("pink block", "white bowl")
+```
+```gold:
+put_first_on_second("pink block", "white bowl")
+```
+========= step 2 =========
+# query: The rainbow block is four times the weight of the green block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 3 =========
+# query: The red block is twice the weight of the pink block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the rainbow block in the gray bowl
+```generated:
+put_first_on_second("rainbow block", "gray bowl")
+```
+```gold:
+put_first_on_second("rainbow block", "gray bowl")
+```
+========= step 5 =========
+# query: The green block is one-thrid the weight of the pink block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 6 =========
+# query: Put blocks in the white bowl so that their total weight becomes identical to what is in the gray bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("green block", "white bowl")
+```

@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The cyan block is on the green block and the white block is on the orange block
+say("yes")
+---------
+>> gold
+say("no")
+---------

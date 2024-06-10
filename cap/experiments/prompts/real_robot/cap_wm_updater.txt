@@ -1,0 +1,165 @@
+### Empty lines and comments that start with ### are ignored (i.e. not passed to LLM).
+
+In this task, the robot sees objects on a table. Some are used for cover, others are regular items. A human user asks the robot to pick up and put down objects, following these rules:
+* The robot can grab one object at a time.
+* The robot can place an object on a regular item or empty space.
+* The robot should put away the top object before dealing with the bottom one.
+* The robot can call these functions: `put_first_on_second`, `update_wm`, and `say`.
+
+===
+
+### Step 0
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+# }
+
+### Step 1
+# query: Put the red apple on the green pepper.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "red apple": {"on": "green pepper"},
+#     "green pepper": {"under": "red apple"},
+# }
+
+### Step 2
+# query: Put the yellow lid on the blue mushroom.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "red apple": {"on": "green pepper"},
+#     "green pepper": {"under": "red apple"},
+#     "blue mushroom": {"under": "yellow lid"},
+#     "yellow lid": {"on": "blue mushroom"},
+# }
+
+### Step 5
+# query: Put the red apple on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "blue mushroom": {"under": "yellow lid"},
+#     "yellow lid": {"on": "blue mushroom"},
+# }
+
+# query: Put the cyan bowl on the green pepper.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"under": "cyan bowl"},
+#     "blue mushroom": {"under": "yellow lid"},
+#     "cyan bowl": {"on": "green pepper"},
+#     "yellow lid": {"on": "blue mushroom"},
+# }
+
+### Step 6
+# query: Put the yellow lid on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"under": "cyan bowl"},
+#     "cyan bowl": {"on": "green pepper"},
+# }
+
+# query: Put the magenta cup on the blue mushroom.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"under": "cyan bowl"},
+#     "blue mushroom": {"under": "magenta cup"},
+#     "cyan bowl": {"on": "green pepper"},
+#     "magenta cup": {"on": "blue mushroom"},
+# }
+
+### Step 7
+# query: Put the magenta cup on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"under": "cyan bowl"},
+#     "cyan bowl": {"on": "green pepper"},
+# }
+
+# query: Put the blue mushroom on the red apple.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "red apple": {"under": "blue mushroom"},
+#     "green pepper": {"under": "cyan bowl"},
+#     "blue mushroom": {"on": "red apple"},
+#     "cyan bowl": {"on": "green pepper"},
+# }
+
+### Step 8
+# query: Put the cyan bowl on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "red apple": {"under": "blue mushroom"},
+#     "blue mushroom": {"on": "red apple"},
+# }
+
+# query: Put the blue mushroom on the green pepper.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"under": "blue mushroom"},
+#     "blue mushroom": {"on": "green pepper"},
+# }
+
+### Step 9
+# query: Put the blue mushroom on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+# }
+
+# query: Put the red apple on the green pepper.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "red apple": {"on": "green pepper"},
+#     "green pepper": {"under": "red apple"},
+# }
+
+### Step 10
+# query: Put the red apple on the empty space.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+# }
+
+# query: Put the green pepper on the blue mushroom.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"on": "blue mushroom"},
+#     "blue mushroom": {"under": "green pepper"},
+# }
+
+### Step 11
+# query: Put the green pepper on the red apple.
+
+# state = {
+#     "items": ("red apple", "green pepper", "blue mushroom"),
+#     "covers": ("cyan bowl", "magenta cup", "yellow lid"),
+#     "green pepper": {"on": "red apple"},
+#     "red apple": {"under": "green pepper"},
+# }
+
+===

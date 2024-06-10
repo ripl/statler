@@ -1,0 +1,18 @@
+========= step 0 =========
+========= step 10 =========
+>> generated
+# THINK: The dirty blocks are blue block, teal block, black block, purple block, and cyan block
+put_first_on_second("blue block", "table")
+put_first_on_second("teal block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("purple block", "table")
+put_first_on_second("cyan block", "table")
+update_wm("Put the blue, teal, black, purple, and cyan blocks on the table")
+---------
+>> gold
+put_first_on_second("teal block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("cyan block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the teal block, the black block, the cyan block, and the blue block on the relations.")
+---------

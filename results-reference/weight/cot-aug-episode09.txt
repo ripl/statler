@@ -1,0 +1,112 @@
+========= step 0 =========
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {},
+#     “yellow block": {},
+#     “green block": {},
+#     “pink block": {},
+#     “gray bowl”: {},
+#     “red bowl": {},
+# }
+========= step 1 =========
+# query: The silver block is four times the weight of the green block
+```generated:
+update_wm("The silver block has four times the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight * 4},
+#     “yellow block": {},
+#     “green block": {"weight": silver_block.weight / 4},
+#     “pink block": {},
+#     “gray bowl”: {},
+#     “red bowl": {},
+# }
+========= step 2 =========
+# query: The pink block is twice the weight of the yellow block
+```generated:
+update_wm("The pink block has twice the weight of the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight * 4},
+#     “yellow block": {"weight": pink_block.weight / 2},
+#     “green block": {"weight": silver_block.weight / 4},
+#     “pink block": {"weight": yellow_block.weight * 2},
+#     “gray bowl”: {},
+#     “red bowl": {},
+# }
+========= step 3 =========
+# query: Put the silver block in the gray bowl
+```generated:
+put_first_on_second("silver block", "gray bowl")
+update_wm("Put the silver block in the gray bowl")
+```
+```gold:
+put_first_on_second("silver block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight * 4},
+#     “yellow block": {"weight": pink_block.weight / 2},
+#     “green block": {"weight": silver_block.weight / 4},
+#     “pink block": {"weight": yellow_block.weight * 2},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “red bowl": {},
+# }
+========= step 4 =========
+# query: The green block is one-thrid the weight of the yellow block
+```generated:
+update_wm("The green block has one-third the weight of the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight * 4},
+#     “yellow block": {"weight": pink_block.weight / 2},
+#     “green block": {"weight": yellow_block.weight / 3},
+#     “pink block": {"weight": yellow_block.weight * 2},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “red bowl": {},
+# }
+========= step 5 =========
+# query: Put blocks in the red bowl so that their total weight becomes identical to what is in the gray bowl
+```generated:
+# THINK: In the gray bowl, we have silver block
+# THINK: In the red bowl, we have nothing
+# THINK: The silver block has weight `green_block.weight * 4`
+# THINK: We need to place blocks that have `green_block.weight * 4`
+# THINK: The blocks that have the weight `green_block.weight * 4` are yellow block and pink block
+put_first_on_second("yellow block", "red bowl")
+put_first_on_second("pink block", "red bowl")
+update_wm("Put the yellow block and pink block in the red bowl")
+```
+```gold:
+put_first_on_second("green block", "red bowl"),
+            put_first_on_second("yellow block", "red bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "pink block", "gray bowl", "red bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight * 4},
+#     “yellow block": {"weight": pink_block.weight / 2},
+#     “green block": {"weight": yellow_block.weight / 3},
+#     “pink block": {"weight

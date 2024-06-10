@@ -1,0 +1,30 @@
+from utils import get_obj_pos, get_obj_names, parse_obj_name, bbox_contains_pt, is_obj_visible
+
+objects = ['yellow bowl', 'blue block', 'yellow block', 'blue bowl', 'fruit', 'green block', 'black bowl']
+# is the blue block to the right of the yellow bowl?
+ret_val = get_obj_pos('blue block')[0] > get_obj_pos('yellow bowl')[0]
+objects = ['yellow bowl', 'blue block', 'yellow block', 'blue bowl', 'fruit', 'green block', 'black bowl']
+# how many yellow objects are there?
+yellow_object_names = parse_obj_name('the yellow objects', f'objects = {get_obj_names()}')
+ret_val = len(yellow_object_names)
+objects = ['pink block', 'green block', 'pink bowl', 'blue block', 'blue bowl', 'green bowl']
+# is the pink block on the green bowl?
+ret_val = bbox_contains_pt(container_name='green bowl', obj_name='pink block')
+objects = ['pink block', 'green block', 'pink bowl', 'blue block', 'blue bowl', 'green bowl']
+# what are the blocks left of the green bowl?
+block_names = parse_obj_name('the blocks', f'objects = {get_obj_names()}')
+green_bowl_pos = get_obj_pos('green bowl')
+left_block_names = []
+for block_name in block_names:
+if get_obj_pos(block_name)[0] < green_bowl_pos[0]:
+    left_block_names.append(block_name)
+ret_val = left_block_names
+objects = ['pink block', 'yellow block', 'pink bowl', 'blue block', 'blue bowl', 'yellow bowl']
+# is the sun colored block above the blue bowl?
+sun_block_name = parse_obj_name('sun colored block', f'objects = {get_obj_names()}')
+sun_block_pos = get_obj_pos(sun_block_name)
+blue_bowl_pos = get_obj_pos('blue bowl')
+ret_val = sun_block_pos[1] > blue_bowl_pos[1]
+objects = ['pink block', 'yellow block', 'pink bowl', 'blue block', 'blue bowl', 'yellow bowl']
+# is the green block below the blue bowl?
+ret_val = get_obj_pos('green block')[1] < get_obj_pos('blue bowl')[1]

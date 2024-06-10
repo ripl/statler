@@ -1,0 +1,17 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: In the gray bowl, we have silver block
+# THINK: In the red bowl, we have yellow block, green block, and pink block
+# THINK: The silver block has four times the weight of the green block
+# THINK: The pink block has twice the weight of the yellow block
+# THINK: The green block has one-third the weight of the yellow block
+# THINK: We need to place a block that has `silver_block.weight / 4`
+# THINK: The block that has the weight `silver_block.weight / 4` is yellow block
+put_first_on_second("yellow block", "red bowl")
+update_wm("Put the yellow block in the red bowl")
+---------
+>> gold
+put_first_on_second("green block", "red bowl"),
+            put_first_on_second("yellow block", "red bowl")
+---------

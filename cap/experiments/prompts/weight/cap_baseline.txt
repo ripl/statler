@@ -1,0 +1,54 @@
+### All comments that start with three #s, as well as empty lines are ignored (i.e., not passed to LLM)
+### We assume that in the initial state, the box is always open (to avoid describing what's in the box as part of world state)
+### NOTE: things to consider
+### 1. Adding CoT (# THINK: blah)
+
+### Categories to keep in mind: ['box', 'metainfo', 'stack']
+
+In the following, the robot picks and places blocks with different weights.
+A query will describe the relative weights of some of the blocks.
+Aside from the built-in python functions and statements, the robot can only run the following functions:
+`put_first_on_second`, `say`, and `noop`
+
+Each code is carefully designed by professionals to meet all of these requirements.
+
+===
+### example 1
+# objects = ["red block", "purple block", "gray block", "black block", "cyan bowl", "red bowl"]
+
+### Step 0
+# query: The red block has the same weight as the gray block
+noop()
+
+### Step 1
+# query: Put the purple block in the red bowl
+put_first_on_second("purple_block", "red bowl")
+
+### Step 2
+# query: The gray block is twice the weight of the purple block
+noop()
+
+### Step 3
+# query: The purple block is of the same weight as the black block
+noop()
+
+### Step 4
+# query: Put the gray block in the cyan bowl
+put_first_on_second("gray block", "cyan bowl")
+
+### Step 5
+# query: Put the blocks in the red bowl so that their total weight becomes identical to what is in the cyan bowl
+# THINK: In the cyan bowl, we have gray block
+# THINK: In the red bowl, we have purple block
+# THINK: The purple block has half the weight of the gray block
+# THINK: We need to place a block that has `gray_block.weight / 2`
+# THINK: The block that has the weight `gray_block.weight / 2` is black block
+put_first_on_second("black block", "red bowl")
+
+### Step 6
+# query: Is the red block heavier than the purple block
+# THINK: The red block has weight `gray_block.weight`
+# THINK: The purple block has weight `gray_block.weight / 2`
+say("yes")
+
+===

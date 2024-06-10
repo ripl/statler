@@ -1,0 +1,14 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: In the gray bowl, we have red block
+# THINK: In the blue bowl, we have nothing
+# THINK: The red block has weight `orange_block.weight * 2`
+# THINK: We need to place a block that has `orange_block.weight`
+# THINK: The block that has the weight `orange_block.weight` is orange block
+put_first_on_second("orange block", "blue bowl")
+update_wm("Put the orange block in the blue bowl")
+---------
+>> gold
+put_first_on_second("black block", "blue bowl")
+---------

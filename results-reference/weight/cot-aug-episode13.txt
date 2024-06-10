@@ -1,0 +1,112 @@
+========= step 0 =========
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {},
+#     “orange block": {},
+#     “green block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “blue bowl": {},
+# }
+========= step 1 =========
+# query: The weight of the black block is three times that of the green block.
+```generated:
+update_wm("The weight of the black block is three times that of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {"weight": green_block.weight * 3},
+#     “orange block": {},
+#     “green block": {"weight": black_block.weight / 3},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “blue bowl": {},
+# }
+========= step 2 =========
+# query: The red block is twice the weight of the orange block
+```generated:
+update_wm("The red block has twice the weight of the orange block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {"weight": green_block.weight * 3},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": black_block.weight / 3},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {},
+#     “blue bowl": {},
+# }
+========= step 3 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+update_wm("Put the red block in the gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {"weight": green_block.weight * 3},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": black_block.weight / 3},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block"]},
+#     “blue bowl": {},
+# }
+========= step 4 =========
+# query: The red block has the same weight of the black block
+```generated:
+update_wm("The red block has the same weight as the black block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {"weight": red_block.weight},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": black_block.weight / 3},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block"]},
+#     “blue bowl": {},
+# }
+========= step 5 =========
+# query: Put blocks in the blue bowl so that their total weight becomes identical to what is in the gray bowl
+```generated:
+# THINK: In the gray bowl, we have red block
+# THINK: In the blue bowl, we have nothing
+# THINK: The red block has weight `orange_block.weight * 2`
+# THINK: We need to place a block that has `orange_block.weight`
+# THINK: The block that has the weight `orange_block.weight` is orange block
+put_first_on_second("orange block", "blue bowl")
+update_wm("Put the orange block in the blue bowl")
+```
+```gold:
+put_first_on_second("black block", "blue bowl")
+```
+
+# state = {
+#     "objects" = ["black block", "orange block", green block", "red block", "gray bowl", "blue bowl", table"],
+#     "relations": [],
+#     “black block": {"weight": red_block.weight},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": black_block.weight / 3},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block"]},
+#

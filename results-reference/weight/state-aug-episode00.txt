@@ -1,0 +1,113 @@
+========= step 0 =========
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#     "relations": [],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “transparent bowl”: {},
+#     "green bowl": {},
+# }
+========= step 1 =========
+# query: The green block has the same weight as the white block
+```generated:
+update_wm("The green block has the same weight as the white block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#      "relations": [],
+#      “green block": {"weight": white_block.weight},
+#      “orange block": {},
+#      “white block": {"weight": green_block.weight},
+#      “black block": {},
+#      “transparent bowl”: {},
+#      "green bowl": {},
+# }
+========= step 2 =========
+# query: The white block is twice the weight of the black block
+```generated:
+update_wm("The white block has twice the weight of the black block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#      "relations": [],
+#      “green block": {"weight": white_block.weight},
+#      “orange block": {},
+#      “white block": {"weight": green_block.weight},
+#      “black block": {"weight": white_block.weight / 2},
+#      “transparent bowl”: {},
+#      "green bowl": {},
+# }
+========= step 3 =========
+# query: The orange block is half the weight of the green block
+```generated:
+update_wm("The orange block has half the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#      "relations": [],
+#      “green block": {"weight": white_block.weight},
+#      “orange block": {"weight": green_block.weight / 2},
+#      “white block": {"weight": green_block.weight},
+#      “black block": {"weight": white_block.weight / 2},
+#      “transparent bowl”: {},
+#      "green bowl": {},
+# }
+========= step 4 =========
+# query: Put the orange block in the transparent bowl
+```generated:
+put_first_on_second("orange block", "transparent bowl")
+update_wm("Put the orange block in the transparent bowl")
+```
+```gold:
+put_first_on_second("orange block", "transparent bowl")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#      "relations": [],
+#      “green block": {"weight": white_block.weight},
+#      “orange block": {"weight": green_block.weight / 2},
+#      “white block": {"weight": green_block.weight},
+#      “black block": {"weight": white_block.weight / 2},
+#      “transparent bowl”: {"contains": ["orange block"]},
+#      "green bowl": {},
+# }
+========= step 5 =========
+# query: Put the blocks in the green bowl so that their total weight becomes identical to what is in the transparent bowl
+```generated:
+# THINK: In the transparent bowl, we have orange block
+# THINK: In the green bowl, we have nothing
+# THINK: The orange block has half the weight of the green block
+# THINK: We need to place a block that has `green_block.weight / 2`
+# THINK: The block that has the weight `green_block.weight / 2` is black block
+put_first_on_second("black block", "green bowl")
+update_wm("Put the black block in the green bowl")
+```
+```gold:
+put_first_on_second("black block", "green bowl")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "transparent bowl", "green bowl"],
+#      "relations": [],
+#      “green block": {"weight": white_block.weight},
+#      “orange block": {"weight": green_block.weight / 2},
+#      “white block": {"weight": green_block.weight},
+#      “black block": {"weight": white_block.weight / 2},
+#      “transparent bowl”: {"contains": ["orange block"]},
+#      "green bowl": {"contains": ["black block"]},
+# }

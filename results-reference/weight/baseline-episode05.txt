@@ -1,0 +1,67 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: Put the yellow block in the gray bowl
+```generated:
+put_first_on_second("yellow block", "gray bowl")
+```
+```gold:
+put_first_on_second("yellow block", "gray bowl")
+```
+========= step 2 =========
+# query: The silver block is twice the weight of the green block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 3 =========
+# query: The red block is twice the weight of the yellow block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the yellow block in the white bowl
+```generated:
+put_first_on_second("yellow block", "white bowl")
+```
+```gold:
+put_first_on_second("yellow block", "white bowl")
+```
+========= step 5 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+========= step 6 =========
+# query: The green block is twice the weight of the yellow block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 7 =========
+# query: Put the green block in the white bowl
+```generated:
+put_first_on_second("green block", "white bowl")
+```
+```gold:
+put_first_on_second("green block", "white bowl")
+```
+========= step 8 =========
+# query: Remove blocks from the white bowl so that their total weight becomes identical to what is in the gray bowl. The removed blocks should be put on the table
+```generated:
+
+```
+```gold:
+# This is wrong, the correct one should be put_first_on_second(yellow block, table) Huanyu
+put_first_on_second("green block", "table")
+```

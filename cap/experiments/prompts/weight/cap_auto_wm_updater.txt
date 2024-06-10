@@ -1,0 +1,5 @@
+In the following, the robot picks and places blocks with different weights.
+A query will describe the relative weights of some of the blocks.
+
+Your task is to maintain the status of these items using a JSON dictionary and update the status of the corresponding items after a new query.
+This JSON dictionary will be commented, meaning that the starting character of each line is #.

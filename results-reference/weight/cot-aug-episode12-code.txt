@@ -1,0 +1,13 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: In the white bowl, we have silver block
+# THINK: In the gray bowl, we need to place a block that has `silver_block.weight`
+# THINK: The block that has the weight `silver_block.weight` is green block
+put_first_on_second("green block", "gray bowl")
+update_wm("Put the green block in the gray bowl")
+---------
+>> gold
+put_first_on_second("gold block", "gray bowl"),
+            put_first_on_second("bronze block", "gray bowl")
+---------

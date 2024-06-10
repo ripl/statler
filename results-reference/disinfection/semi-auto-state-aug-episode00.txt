@@ -1,0 +1,320 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "green block": {},
+#     "white block": {},
+#     "black block": {},
+#     "blue block": {},
+#     "pink block": {},
+#     "red block": {},
+#     "orange bowl": {},
+#     "silver bowl": {}
+# }
+
+========= step 1 =========
+# query: the red block is dirty.
+```generated:
+update_wm("The red block is dirty")
+```
+```gold:
+update_wm("the red block is dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector"],
+#      "relations": [],
+#      "disinfector": {"contains": []},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {}
+# }
+========= step 2 =========
+# query: the pink block is clean.
+```generated:
+update_wm("The pink block is clean")
+```
+```gold:
+update_wm("the pink block is clean.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector"],
+#      "relations": [],
+#      "disinfector": {"contains": []},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {}
+# }
+========= step 3 =========
+# query: Put the pink block in the disinfector
+```generated:
+put_first_on_second("pink block", "disinfector")
+update_wm("Put the pink block in the disinfector")
+```
+```gold:
+put_first_on_second("pink block", "disinfector")
+update_wm("Put the pink block in the disinfector. the pink block becomes clean.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector"],
+#      "relations": [],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {}
+# }
+========= step 4 =========
+# query: Put the red block in the orange bowl
+```generated:
+put_first_on_second("red block", "orange bowl")
+update_wm("Put the red block in the orange bowl")
+```
+```gold:
+put_first_on_second("red block", "orange bowl")
+update_wm("Put the red block in the orange bowl.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector"],
+#      "relations": [["red block", "orange bowl"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": true},
+#      "orange bowl": {"contains": ["red block"]},
+#      "silver bowl": {}
+# }
+========= step 5 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table")
+```
+```gold:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["red block"]}
+# }
+========= step 6 =========
+# query: Put all the clean blocks on the table.
+```generated:
+put_first_on_second("green block", "table")
+put_first_on_second("white block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the green, white, black, and blue blocks on the table")
+```
+```gold:
+put_first_on_second("pink block", "table")
+update_wm("Put the pink block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["red block", "green block", "white block", "black block", "blue block"]}
+# }
+========= step 7 =========
+# query: Put the red block on the pink block
+```generated:
+put_first_on_second("red block", "pink block")
+update_wm("Put the red block on the pink block")
+```
+```gold:
+put_first_on_second("red block", "pink block")
+update_wm("Put the red block on the pink block. the pink block becomes dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["red block", "table"], ["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "pink block"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": true},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block"]}
+# }
+========= step 8 =========
+# query: Put the red block in the orange bowl
+```generated:
+put_first_on_second("red block", "orange bowl")
+update_wm("Put the red block in the orange bowl")
+```
+```gold:
+put_first_on_second("red block", "orange bowl")
+update_wm("Put the red block in the orange bowl.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["red block", "orange bowl"], ["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "pink block"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": true},
+#      "red block": {"dirty": true},
+#      "orange bowl": {"contains": ["red block"]},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block"]}
+# }
+========= step 9 =========
+# query: Put the red block on the table.
+```generated:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table.")
+```
+```gold:
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "table"]],
+#      "disinfector": {"contains": ["pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": true},
+#      "red block": {"dirty": true},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block", "red block"]}
+# }
+========= step 10 =========
+# query: Put the pink block on the red block
+```generated:
+put_first_on_second("pink block", "red block")
+update_wm("Put the pink block on the red block")
+```
+```gold:
+put_first_on_second("pink block", "red block")
+update_wm("Put the pink block on the red block.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "table"], ["pink block", "red block"]],
+#      "disinfector": {"contains": []},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": true},
+#      "red block": {"dirty": true, "contains": ["pink block"]},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block", "red block"]}
+# }
+========= step 11 =========
+# query: Put the red block and the pink block in the disinfector
+```generated:
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+update_wm("Put the red block and the pink block in the disinfector")
+```
+```gold:
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+update_wm("Put the red block and the pink block in the disinfector. the red block and the pink block become clean.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "table"], ["pink block", "red block"]],
+#      "disinfector": {"contains": ["red block", "pink block"]},
+#      "green block": {},
+#      "white block": {},
+#      "black block": {},
+#      "blue block": {},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": false, "contains": []},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block"]}
+# }
+========= step 12 =========
+# query: Put all the clean blocks on the table.
+```generated:
+# THINK: The clean blocks are green block, white block, black block, blue block, pink block, and red block
+put_first_on_second("green block", "table")
+put_first_on_second("white block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("blue block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("red block", "table")
+update_wm("Put all the clean blocks on the table")
+```
+```gold:
+put_first_on_second("red block", "table")
+put_first_on_second("pink block", "table")
+update_wm("Put the red block and the pink block on the relations.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "red block", "orange bowl", "silver bowl", "disinfector", "table"],
+#      "relations": [["green block", "table"], ["white block", "table"], ["black block", "table"], ["blue block", "table"], ["red block", "table"], ["pink block", "red block"]],
+#      "disinfector": {"contains": ["red block", "pink block"]},
+#      "green block": {"dirty": false},
+#      "white block": {"dirty": false},
+#      "black block": {"dirty": false},
+#      "blue block": {"dirty": false},
+#      "pink block": {"dirty": false},
+#      "red block": {"dirty": false, "contains": []},
+#      "orange bowl": {},
+#      "silver bowl": {},
+#      "table": {"contains": ["green block", "white block", "black block", "blue block", "pink block", "red block"]}
+# }

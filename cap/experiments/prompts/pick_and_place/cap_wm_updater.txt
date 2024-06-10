@@ -1,0 +1,116 @@
+### All comments that start with three #s, as well as empty lines are ignored (i.e., not passed to LLM)
+### We assume that in the initial state, the box is always open (to avoid describing what's in the box as part of world state)
+
+### Categories to keep in mind: ['box', 'metainfo', 'stack']
+
+### Instructions:
+### - Let's never stack objects in a bowl
+### - Let's not ask the model to pick from the bottom of a stack (always pick from the top!)
+
+In the following, the robot performs a sequence of pick and place.
+The workspace consists of a table and objects placed on the table.
+Remember that the only objects the robot can interact are those in the "objects" list.
+The robot can pick and place the blocks, and also put blocks in a bowl.
+
+Each code is carefully designed by professionals.
+
+===
+
+### example 1
+### Step 0
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": [],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {},
+# }
+
+### Step 1
+# query: Put the white block in the yellow bowl
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": [],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {"contains": ["white block"]},
+# }
+
+### Step 2
+# query: Put the purple block in the pink bowl
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": [],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {"contains": ["purple block"]}
+#     "yellow bowl": {"contains": ["white block"]},
+# }
+
+### Step 3
+# query: Put the purple block in the pink bowl
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": ["purple block is on yellow block"],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {"contains": ["white block"]},
+# }
+
+### Step 4
+# query: Put the brown block in the yellow bowl
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": ["purple block is on yellow block"],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {"contains": ["white block", "brown block"]},
+# }
+
+### Step 6
+# query: Put the purple block on the white block
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": ["purple block is on white block"],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {"contains": ["white block", "brown block"]},
+# }
+
+### Step 7
+# query: Put the purple block on the yellow block
+
+# state = {
+#     "objects": ["white block", "yellow block", "purple block", "brown block", "pink bowl", "yellow bowl"],
+#     "relations": ["purple block is on white block", "brown block is on yellow block"],
+#     "white block": {},
+#     "yellow block": {},
+#     "purple block": {},
+#     "brown block": {},
+#     "pink bowl": {}
+#     "yellow bowl": {"contains": ["white block"]},
+# }
+
+===

@@ -1,0 +1,131 @@
+========= step 0 =========
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": [],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {},
+# }
+========= step 1 =========
+# query: Put the green block on the orange block
+```generated:
+put_first_on_second("green block", "orange block")
+update_wm("Put the green block on the orange block")
+```
+```gold:
+put_first_on_second("green block", "orange block")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {},
+# }
+========= step 2 =========
+# query: place the black block in the golden bowl
+```generated:
+put_first_on_second("black block", "golden bowl")
+update_wm("Put the black block in the golden bowl")
+```
+```gold:
+put_first_on_second("black block", "golden bowl")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {"contains": ["black block"]},
+#     "silver bowl": {},
+# }
+========= step 3 =========
+# query: put the white block in the silver bowl
+```generated:
+put_first_on_second("white block", "silver bowl")
+update_wm("Put the white block in the silver bowl")
+```
+```gold:
+put_first_on_second("white block", "silver bowl")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {"contains": ["black block"]},
+#     "silver bowl": {"contains": ["white block"]},
+# }
+========= step 4 =========
+# query: place the block in the golden bowl on the green block
+```generated:
+put_first_on_second("black block", "green block")
+update_wm("Put the black block on the green block")
+```
+```gold:
+put_first_on_second("black block", "green block")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block", "black block is on green block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {"contains": ["white block"]},
+# }
+========= step 5 =========
+# query: what is the color of the block right above the orange block
+```generated:
+# THINK: The green block is on the orange block
+say("green")
+```
+```gold:
+say("green block")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block", "black block is on green block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {"contains": ["white block"]},
+# }
+========= step 6 =========
+# query: is the white block in a higher position than the black block
+```generated:
+# THINK: The white block is in the silver bowl and the black block is on the green block
+say("yes")
+```
+```gold:
+say("no")
+```
+
+# state = {
+#     "objects": ["green block", "orange block", "white block", "black block", "golden bowl", "silver bowl"],
+#     "relations": ["green block is on orange block", "black block is on green block"],
+#     “green block": {},
+#     “orange block": {},
+#     “white block": {},
+#     “black block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {"contains": ["white block"]},
+# }

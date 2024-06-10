@@ -1,0 +1,191 @@
+========= step 0 =========
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {},
+#     “orange block": {},
+#     “green block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 1 =========
+# query: The transparent block is twice the weight of the green block
+```generated:
+update_wm("The transparent block has twice the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 2 =========
+# query: Put the orange block in the gray bowl
+```generated:
+put_first_on_second("orange block", "gray bowl")
+update_wm("Put the orange block in the gray bowl")
+```
+```gold:
+put_first_on_second("orange block", "gray bowl")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {},
+#     “gray bowl”: {"contains": ["orange block"]},
+#     “white bowl": {},
+# }
+========= step 3 =========
+# query: The red block is twice the weight of the orange block
+```generated:
+update_wm("The red block has twice the weight of the orange block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["orange block"]},
+#     “white bowl": {},
+# }
+========= step 4 =========
+# query: Put the orange block in the white bowl
+```generated:
+put_first_on_second("orange block", "white bowl")
+update_wm("Put the orange block in the white bowl")
+```
+```gold:
+put_first_on_second("orange block", "white bowl")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {},
+#     “white bowl": {"contains": ["orange block"]},
+# }
+========= step 5 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+update_wm("Put the red block in the gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block"]},
+#     “white bowl": {"contains": ["orange block"]},
+# }
+========= step 6 =========
+# query: Put the transparent block in the gray bowl
+```generated:
+put_first_on_second("transparent block", "gray bowl")
+update_wm("Put the transparent block in the gray bowl")
+```
+```gold:
+put_first_on_second("transparent block", "gray bowl")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": transparent_block.weight / 2},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block", "transparent block"]},
+#     “white bowl": {"contains": ["orange block"]},
+# }
+========= step 7 =========
+# query: The green block has the same weight of the orange block
+```generated:
+update_wm("The green block has the same weight as the orange block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": orange_block.weight},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block", "transparent block"]},
+#     “white bowl": {"contains": ["orange block"]},
+# }
+========= step 8 =========
+# query: Put the green block in the white bowl
+```generated:
+put_first_on_second("green block", "white bowl")
+update_wm("Put the green block in the white bowl")
+```
+```gold:
+put_first_on_second("green block", "white bowl")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “orange block": {"weight": red_block.weight / 2},
+#     “green block": {"weight": orange_block.weight},
+#     “red block": {"weight": orange_block.weight * 2},
+#     “gray bowl”: {"contains": ["red block", "transparent block"]},
+#     “white bowl": {"contains": ["orange block", "green block"]},
+# }
+========= step 9 =========
+# query: Remove blocks from the gray bowl so that their total weight becomes identical to what is in the white bowl. The removed blocks should be put on the table
+```generated:
+# THINK: In the white bowl, we have orange block and green block
+# THINK: In the gray bowl, we have red block and transparent block
+# THINK: The orange block has weight `red_block.weight / 2`
+# THINK: The green block has weight `orange_block.weight`
+# THINK: The red block has weight `orange_block.weight * 2`
+# THINK: The transparent block has weight `green_block.weight * 2`
+# THINK: We need to remove a block that has `orange_block.weight + green_block.weight`
+# THINK: The block that has the weight `orange_block.weight + green_block.weight` is red block
+put_first_on_second("red block", "table")
+update_wm("Put the red block on the table")
+```
+```gold:
+put_first_on_second("transparent block", "table")
+```
+
+# state = {
+#     "objects": ["transparent block", "orange block", green block", "red block", "gray bowl", "white bowl"],
+#     "relations": [],
+#     “transparent block": {"weight": green_block.weight * 2},
+#     “

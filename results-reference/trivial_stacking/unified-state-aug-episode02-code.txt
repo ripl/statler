@@ -1,0 +1,10 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The red block is on the blue block
+say("red")
+
+---------
+>> gold
+say("red)
+---------

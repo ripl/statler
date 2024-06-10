@@ -1,0 +1,64 @@
+import numpy as np
+from env_utils import get_obj_pos, parse_position
+from utils import get_obj_positions_np
+
+objects = ['blue block', 'cyan block', 'purple bowl', 'gray bowl', 'brown bowl', 'pink block', 'purple block']
+# the block closest to the purple bowl.
+block_names = ['blue block', 'cyan block', 'purple block']
+block_positions = get_obj_positions_np(block_names)
+closest_block_idx = get_closest_idx(points=block_positions, point=get_obj_pos('purple bowl'))
+closest_block_name = block_names[closest_block_idx]
+ret_val = closest_block_name
+objects = ['brown bowl', 'banana', 'brown block', 'apple', 'blue bowl', 'blue block']
+# the blocks.
+ret_val = ['brown block', 'blue block']
+objects = ['brown bowl', 'banana', 'brown block', 'apple', 'blue bowl', 'blue block']
+# the brown objects.
+ret_val = ['brown bowl', 'brown block']
+objects = ['brown bowl', 'banana', 'brown block', 'apple', 'blue bowl', 'blue block']
+# a fruit that's not the apple
+fruit_names = ['banana', 'apple']
+for fruit_name in fruit_names:
+    if fruit_name != 'apple':
+        ret_val = fruit_name
+objects = ['blue block', 'cyan block', 'purple bowl', 'brown bowl', 'purple block']
+# blocks above the brown bowl.
+block_names = ['blue block', 'cyan block', 'purple block']
+brown_bowl_pos = get_obj_pos('brown bowl')
+use_block_names = []
+for block_name in block_names:
+    if get_obj_pos(block_name)[1] > brown_bowl_pos[1]:
+        use_block_names.append(block_name)
+ret_val = use_block_names
+objects = ['blue block', 'cyan block', 'purple bowl', 'brown bowl', 'purple block']
+# the blue block.
+ret_val = 'blue block'
+objects = ['blue block', 'cyan block', 'purple bowl', 'brown bowl', 'purple block']
+# the block closest to the bottom right corner.
+corner_pos = parse_position('bottom right corner')
+block_names = ['blue block', 'cyan block', 'purple block']
+block_positions = get_obj_positions_np(block_names)
+closest_block_idx = get_closest_idx(points=block_positions, point=corner_pos)
+closest_block_name = block_names[closest_block_idx]
+ret_val = closest_block_name
+objects = ['brown bowl', 'green block', 'brown block', 'green bowl', 'blue bowl', 'blue block']
+# the left most block.
+block_names = ['green block', 'brown block', 'blue block']
+block_positions = get_obj_positions_np(block_names)
+left_block_idx = np.argsort(block_positions[:, 0])[0]
+left_block_name = block_names[left_block_idx]
+ret_val = left_block_name
+objects = ['brown bowl', 'green block', 'brown block', 'green bowl', 'blue bowl', 'blue block']
+# the bowl on near the top.
+bowl_names = ['brown bowl', 'green bowl', 'blue bowl']
+bowl_positions = get_obj_positions_np(bowl_names)
+top_bowl_idx = np.argsort(block_positions[:, 1])[-1]
+top_bowl_name = bowl_names[top_bowl_idx]
+ret_val = top_bowl_name
+objects = ['yellow bowl', 'purple block', 'yellow block', 'purple bowl', 'pink bowl', 'pink block']
+# the third bowl from the right.
+bowl_names = ['yellow bowl', 'purple bowl', 'pink bowl']
+bowl_positions = get_obj_positions_np(bowl_names)
+bowl_idx = np.argsort(block_positions[:, 0])[-3]
+bowl_name = bowl_names[bowl_idx]
+ret_val = bowl_name

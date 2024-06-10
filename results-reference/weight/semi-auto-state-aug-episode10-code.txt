@@ -1,0 +1,13 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: We need to move the red block from the white bowl to the gray bowl
+# THINK: We need to move the black block from the gray bowl to the white bowl
+put_first_on_second("red block", "gray bowl")
+put_first_on_second("black block", "white bowl")
+update_wm("Put blocks in both bowls so that the sums of the weights of blocks in each of the two bowls becomes identical")
+---------
+>> gold
+put_first_on_second("yellow block", "gray bowl"),
+            put_first_on_second("black block", "white bowl")
+---------

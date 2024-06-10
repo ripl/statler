@@ -1,0 +1,42 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: The green block has the same weight as the white block
+```generated:
+say("yes")
+```
+```gold:
+
+```
+========= step 2 =========
+# query: The white block is twice the weight of the black block
+```generated:
+say("yes")
+```
+```gold:
+
+```
+========= step 3 =========
+# query: The orange block is half the weight of the green block
+```generated:
+say("yes")
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the orange block in the transparent bowl
+```generated:
+put_first_on_second("orange block", "transparent bowl")
+```
+```gold:
+put_first_on_second("orange block", "transparent bowl")
+```
+========= step 5 =========
+# query: Put the blocks in the green bowl so that their total weight becomes identical to what is in the transparent bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("black block", "green bowl")
+```

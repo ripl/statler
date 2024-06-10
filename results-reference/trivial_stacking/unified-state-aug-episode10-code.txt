@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+say("orange block")
+
+---------
+>> gold
+say("orange block", "green block")
+---------

@@ -1,0 +1,141 @@
+========= step 0 =========
+# state = {
+#     "objects": ["green block", "white block", "yellow block", "gray block", "cyan block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {}, 
+#     "white block": {}, 
+#     "yellow block": {}, 
+#     "gray block": {}, 
+#     "cyan block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 1 =========
+# query: the white block and the gray block are dirty.
+```generated:
+update_wm("The white and gray blocks are dirty")
+```
+```gold:
+update_wm("the white block and the gray block are dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "yellow block", "gray block", "cyan block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {}, 
+#     "white block": {"is": ["dirty"]}, 
+#     "yellow block": {}, 
+#     "gray block": {"is": ["dirty"]}, 
+#     "cyan block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 2 =========
+# query: The other blocks are clean
+```generated:
+update_wm("The green block, yellow block, and cyan block are clean")
+```
+```gold:
+update_wm("the green block, the yellow block, and the cyan block are clean.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "yellow block", "gray block", "cyan block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {"is": ["clean"]}, 
+#     "white block": {"is": ["dirty"]}, 
+#     "yellow block": {"is": ["clean"]}, 
+#     "gray block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["clean"]}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 3 =========
+# query: Woops, somebody accidentally polluted the white block
+```generated:
+extend context window.
+```
+```gold:
+update_wm("the white block become dirty.")
+```
+
+# state = {}
+========= step 4 =========
+# query: Put the green block, the white block, and the yellow block in the disinfector
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "disinfector")
+put_first_on_second("white block", "disinfector")
+put_first_on_second("yellow block", "disinfector")
+update_wm("Put the green block, the white block, and the yellow block in the disinfector. the green block, the white block, and the yellow block become clean.")
+```
+
+# state = {}
+========= step 5 =========
+# query: Put the gray block in the lavender bowl
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("gray block", "lavender bowl")
+update_wm("Put the gray block in the lavender bowl.")
+```
+
+# state = {}
+========= step 6 =========
+# query: Put the gray block on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("gray block", "table")
+update_wm("Put the gray block on the table.")
+```
+
+# state = {}
+========= step 7 =========
+# query: Put the white block on the gray block
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("white block", "gray block")
+update_wm("Put the white block on the gray block. the white block becomes dirty.")
+```
+
+# state = {}
+========= step 8 =========
+# query: Put the cyan block in the disinfector
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("cyan block", "disinfector")
+update_wm("Put the cyan block in the disinfector.")
+```
+
+# state = {}
+========= step 9 =========
+# query: Put all the clean blocks on the table
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "table")
+put_first_on_second("yellow block", "table")
+put_first_on_second("cyan block", "table")
+update_wm("Put the green block, yellow block, and cyan block on the table.")
+```
+
+# state = {}

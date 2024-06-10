@@ -1,0 +1,14 @@
+========= step 0 =========
+========= step 11 =========
+>> generated
+# THINK: The clean blocks are white block and black block
+put_first_on_second("white block", "table")
+put_first_on_second("black block", "table")
+update_wm("Put the white and black blocks on the table")
+---------
+>> gold
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the green block, the pink block, and the blue block on the relations.")
+---------

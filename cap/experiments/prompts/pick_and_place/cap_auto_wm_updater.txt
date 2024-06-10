@@ -1,0 +1,6 @@
+In the following, the robot performs a sequence of pick and place.
+The workspace consists of a table and objects placed on the table.
+The robot can pick and place the blocks, and also put blocks in a bowl.
+
+Your task is to maintain the status of these items using a JSON dictionary and update the status of the corresponding items after a new query.
+This JSON dictionary will be commented, meaning that the starting character of each line is #.

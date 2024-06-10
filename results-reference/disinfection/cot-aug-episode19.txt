@@ -1,0 +1,111 @@
+========= step 0 =========
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {}, 
+#     "white block": {}, 
+#     "black block": {}, 
+#     "blue block": {}, 
+#     "pink block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 1 =========
+# query: the blue block and the green block are clean.
+```generated:
+update_wm("The blue and green blocks are clean")
+```
+```gold:
+update_wm("the blue block and the green block are clean.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {"is": ["clean"]}, 
+#     "white block": {}, 
+#     "black block": {}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "pink block": {}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 2 =========
+# query: The other blocks are dirty
+```generated:
+update_wm("The white, black, and pink blocks are dirty")
+```
+```gold:
+update_wm("the pink block, the black block, and the white block are dirty.")
+```
+
+# state = {
+#     "objects": ["green block", "white block", "black block", "blue block", "pink block", "rust bowl", "magenta bowl", "tan bowl", "lavender bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "green block": {"is": ["clean"]}, 
+#     "white block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "pink block": {"is": ["dirty"]}, 
+#     "rust bowl": {}, 
+#     "magenta bowl": {}, 
+#     "tan bowl": {}, 
+#     "lavender bowl": {}
+# }
+========= step 3 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("pink block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("white block", "table")
+update_wm("Put the pink block, the black block, and the white block on the relations.")
+```
+
+# state = {}
+========= step 4 =========
+# query: Put the green block on the blue block
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("green block", "blue block")
+update_wm("Put the green block on the blue block.")
+```
+
+# state = {}
+========= step 5 =========
+# query: Put the pink block and the black block in the disinfector
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("black block", "disinfector")
+update_wm("Put the pink block and the black block in the disinfector. the pink block and the black block become clean.")
+```
+
+# state = {}
+========= step 6 =========
+# query: Put all the clean blocks on the table.
+```generated:
+extend context window.
+```
+```gold:
+put_first_on_second("blue block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("black block", "table")
+update_wm("Put the blue block, the green block, the pink block, and the black block on the relations.")
+```
+
+# state = {}

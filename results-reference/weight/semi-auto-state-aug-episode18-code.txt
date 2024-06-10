@@ -1,0 +1,19 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: In the transparent bowl, we have green block, orange block, and white block
+# THINK: In the green bowl, we have black block and gold block
+# THINK: The green block has the same weight as the white block
+# THINK: The orange block has half the weight of the green block
+# THINK: The gold block has ten times the weight of the green block
+
+put_first_on_second("black block", "green bowl")
+put_first_on_second("gold block", "green bowl")
+update_wm("Put the black block and gold block in the green bowl")
+---------
+>> gold
+put_first_on_second("black block", "green bowl")
+            put_first_on_second("white block", "green bowl"),
+            put_first_on_second("green block", "green bowl"),
+            put_first_on_second("orange block", "green bowl")
+---------

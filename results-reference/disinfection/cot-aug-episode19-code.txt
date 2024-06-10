@@ -1,0 +1,39 @@
+========= step 0 =========
+========= step 3 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("pink block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("white block", "table")
+update_wm("Put the pink block, the black block, and the white block on the relations.")
+---------
+========= step 4 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("green block", "blue block")
+update_wm("Put the green block on the blue block.")
+---------
+========= step 5 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("black block", "disinfector")
+update_wm("Put the pink block and the black block in the disinfector. the pink block and the black block become clean.")
+---------
+========= step 6 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("blue block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("black block", "table")
+update_wm("Put the blue block, the green block, the pink block, and the black block on the relations.")
+---------

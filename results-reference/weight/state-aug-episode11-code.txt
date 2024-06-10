@@ -1,0 +1,19 @@
+========= step 0 =========
+========= step 8 =========
+>> generated
+# THINK: In the gray bowl, we have silver block
+# THINK: In the white bowl, we have red block
+# THINK: The silver block has 10 times the weight of the gold block
+# THINK: The gold block has 10 times the weight of the bronze block
+# THINK: We need to place a block that has `silver_block.weight / 10`
+# THINK: The block that has the weight `silver_block.weight / 10` is gold block
+# THINK: We need to place a block that has `silver_block.weight / 100`
+# THINK: The block that has the weight `silver_block.weight / 100` is bronze block
+put_first_on_second("gold block", "gray bowl")
+put_first_on_second("bronze block", "white bowl")
+update_wm("Put blocks in both bowls so that the sums of the weights of blocks in two bowls becomes identical")
+---------
+>> gold
+put_first_on_second("yellow block", "gray bowl"),
+            put_first_on_second("green block", "white bowl")
+---------

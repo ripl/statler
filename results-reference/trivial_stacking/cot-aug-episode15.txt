@@ -1,0 +1,162 @@
+========= step 0 =========
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": [],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {},
+# }
+========= step 1 =========
+# query: put the white block in the orange bowl
+```generated:
+put_first_on_second("white block", "orange bowl")
+update_wm("Put the white block in the orange bowl")
+```
+```gold:
+put_first_on_second("white block", "orange bowl")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": [],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {"contains": ["white block"]},
+#     "plastic bowl": {},
+# }
+========= step 2 =========
+# query: put the white block on the table
+```generated:
+put_first_on_second("white block", "table")
+update_wm("Put the white block on the table")
+```
+```gold:
+put_first_on_second("white block", "table")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": ["white block is on table"],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {},
+# }
+========= step 3 =========
+# query: put the gray block on the white block
+```generated:
+put_first_on_second("gray block", "white block")
+update_wm("Put the gray block on the white block")
+```
+```gold:
+put_first_on_second("gray block", "white block")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": ["white block is on table", "gray block is on white block"],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {},
+# }
+========= step 4 =========
+# query: put the orange block in the plastic bowl
+```generated:
+put_first_on_second("orange block", "plastic bowl")
+update_wm("Put the orange block in the plastic bowl")
+```
+```gold:
+put_first_on_second("orange block", "plastic bowl")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": ["white block is on table", "gray block is on white block"],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {"contains": ["orange block"]},
+# }
+========= step 5 =========
+# query: put the yellow block in the empty bowl
+```generated:
+put_first_on_second("yellow block", "empty bowl")
+update_wm("Put the yellow block in the empty bowl")
+```
+```gold:
+put_first_on_second("yellow block", "orange bowl")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": ["white block is on table", "gray block is on white block"],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {"contains": ["orange block"]},
+#     "empty bowl": {"contains": ["yellow block"]},
+# }
+========= step 6 =========
+# query: put the red block on the orange block
+```generated:
+put_first_on_second("red block", "orange block")
+update_wm("Put the red block on the orange block")
+```
+```gold:
+put_first_on_second("red block", "orange block")
+```
+
+# state = {
+#     "objects": ["red block", "orange block", "white block", "gray block", "yellow block", "orange bowl", "plastic bowl"],
+#     "relations": ["white block is on table", "gray block is on white block", "red block is on orange block"],
+#     “red block": {},  
+#     “orange block": {},
+#     “white block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “orange bowl”: {},
+#     "plastic bowl": {"contains": ["orange block"]},
+#     "empty bowl": {"contains": ["yellow block"]},
+# }
+========= step 7 =========
+# query: is orange block placed in the plastic bowl
+```generated:
+# THINK: The orange block is in the plastic bowl
+say("yes")
+```
+```gold:
+say("yes")
+```
+
+# state = {}
+========= step 8 =========
+# query: is the white block placed in a bowl
+```generated:
+# THINK: The white block is not in a bowl
+say("no")
+```
+```gold:
+say("no")
+```
+
+# state = {}

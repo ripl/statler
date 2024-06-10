@@ -1,0 +1,187 @@
+========= step 0 =========
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {},
+#     “yellow block": {},
+#     “green block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+#     "gold block": {},
+#     "bronze block":{}
+# }
+========= step 1 =========
+# query: The silver block has the same weight as the green block
+```generated:
+update_wm("The silver block has the same weight as the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+#     "gold block": {},
+#     "bronze block":{}
+# }
+========= step 2 =========
+# query: Put the silver block in the white bowl
+```generated:
+put_first_on_second("silver block", "white bowl")
+update_wm("Put the silver block in the white bowl")
+```
+```gold:
+put_first_on_second("silver block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {"contains": ["silver block"]},
+#     "gold block": {},
+#     "bronze block":{}
+# }
+========= step 3 =========
+# query: The red block has the weight as the yellow block
+```generated:
+update_wm("The red block has the same weight as the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {"weight": yellow_block.weight},
+#     “gray bowl”: {},
+#     “white bowl": {"contains": ["silver block"]},
+#     "gold block": {},
+#     "bronze block":{}
+# }
+========= step 4 =========
+# query: Put the silver block in the gray bowl
+```generated:
+put_first_on_second("silver block", "gray bowl")
+update_wm("Put the silver block in the gray bowl")
+```
+```gold:
+put_first_on_second("silver block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {"weight": yellow_block.weight},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “white bowl": {"contains": ["silver block"]},
+#     "gold block": {},
+#     "bronze block":{}
+# }
+========= step 5 =========
+# query: The gold block is one-tenth the weight of the silver block
+```generated:
+update_wm("The gold block has one-tenth the weight of the silver block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {"weight": yellow_block.weight},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “white bowl": {"contains": ["silver block"]},
+#     "gold block": {"weight": silver_block.weight / 10},
+#     "bronze block":{}
+# }
+========= step 6 =========
+# query: The bronze block is one-tenth the weight of the gold block
+```generated:
+update_wm("The bronze block has one-tenth the weight of the gold block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {"weight": yellow_block.weight},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “white bowl": {"contains": ["silver block"]},
+#     "gold block": {"weight": silver_block.weight / 10},
+#     "bronze block": {"weight": gold_block.weight / 10},
+# }
+========= step 7 =========
+# query: Put the red block in the white bowl
+```generated:
+put_first_on_second("red block", "white bowl")
+update_wm("Put the red block in the white bowl")
+```
+```gold:
+put_first_on_second("red block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#     “red block": {"weight": yellow_block.weight},
+#     “gray bowl”: {"contains": ["silver block"]},
+#     “white bowl": {"contains": ["silver block", "red block"]},
+#     "gold block": {"weight": silver_block.weight / 10},
+#     "bronze block": {"weight": gold_block.weight / 10},
+# }
+========= step 8 =========
+# query: Put blocks in both bowls so that the sums of the weights of blocks in two bowls becomes identical
+```generated:
+# THINK: In the gray bowl, we have silver block
+# THINK: In the white bowl, we have silver block and red block
+# THINK: The silver block has weight `green_block.weight`
+# THINK: The red block has weight `yellow_block.weight`
+# THINK: We need to place a block that has `green_block.weight - yellow_block.weight`
+# THINK: The block that has the weight `green_block.weight - yellow_block.weight` is yellow block
+put_first_on_second("yellow block", "gray bowl")
+update_wm("Put the yellow block in the gray bowl")
+```
+```gold:
+put_first_on_second("yellow block", "gray bowl"),
+            put_first_on_second("green block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "gold block", "bronze block", white bowl", table"],
+#     "relations": [],
+#     “silver block": {"weight": green_block.weight},
+#     “yellow block": {"weight": red_block.weight},
+#     “green block": {"weight": silver_block.weight},
+#

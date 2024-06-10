@@ -1,0 +1,60 @@
+========= step 0 =========
+========= step 3 =========
+>> generated
+extend context window.
+---------
+>> gold
+update_wm("the white block become dirty.")
+---------
+========= step 4 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("green block", "disinfector")
+put_first_on_second("white block", "disinfector")
+put_first_on_second("yellow block", "disinfector")
+update_wm("Put the green block, the white block, and the yellow block in the disinfector. the green block, the white block, and the yellow block become clean.")
+---------
+========= step 5 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("gray block", "lavender bowl")
+update_wm("Put the gray block in the lavender bowl.")
+---------
+========= step 6 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("gray block", "table")
+update_wm("Put the gray block on the table.")
+---------
+========= step 7 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("white block", "gray block")
+update_wm("Put the white block on the gray block. the white block becomes dirty.")
+---------
+========= step 8 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("cyan block", "disinfector")
+update_wm("Put the cyan block in the disinfector.")
+---------
+========= step 9 =========
+>> generated
+extend context window.
+---------
+>> gold
+put_first_on_second("green block", "table")
+put_first_on_second("yellow block", "table")
+put_first_on_second("cyan block", "table")
+update_wm("Put the green block, yellow block, and cyan block on the table.")
+---------

@@ -1,0 +1,18 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The purple block is on the white block which is on the golden bowl
+# THINK: Thus the white block is in a higher position
+say("yes")
+---------
+>> gold
+say("no")
+---------
+========= step 6 =========
+>> generated
+say("white block")
+
+---------
+>> gold
+say("white block", "purple block")
+---------

@@ -1,0 +1,74 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: The transparent block is twice the weight of the green block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 2 =========
+# query: Put the orange block in the gray bowl
+```generated:
+put_first_on_second("orange block", "gray bowl")
+```
+```gold:
+put_first_on_second("orange block", "gray bowl")
+```
+========= step 3 =========
+# query: The red block is twice the weight of the orange block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the orange block in the white bowl
+```generated:
+put_first_on_second("orange block", "white bowl")
+```
+```gold:
+put_first_on_second("orange block", "white bowl")
+```
+========= step 5 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+========= step 6 =========
+# query: Put the transparent block in the gray bowl
+```generated:
+put_first_on_second("transparent block", "gray bowl")
+```
+```gold:
+put_first_on_second("transparent block", "gray bowl")
+```
+========= step 7 =========
+# query: The green block has the same weight of the orange block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 8 =========
+# query: Put the green block in the white bowl
+```generated:
+put_first_on_second("green block", "white bowl")
+```
+```gold:
+put_first_on_second("green block", "white bowl")
+```
+========= step 9 =========
+# query: Remove blocks from the gray bowl so that their total weight becomes identical to what is in the white bowl. The removed blocks should be put on the table
+```generated:
+
+```
+```gold:
+put_first_on_second("transparent block", "table")
+```

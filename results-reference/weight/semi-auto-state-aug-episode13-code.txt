@@ -1,0 +1,13 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: In the gray bowl, we have red block
+# THINK: In the blue bowl, we need to place two blocks that have a total weight of 3
+# THINK: The two blocks that have a total weight of 3 are black block and orange block
+put_first_on_second("black block", "blue bowl")
+put_first_on_second("orange block", "blue bowl")
+update_wm("Put the black block and orange block in the blue bowl")
+---------
+>> gold
+put_first_on_second("black block", "blue bowl")
+---------

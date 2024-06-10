@@ -1,0 +1,306 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [],
+#     “silver block": {},
+#     “yellow block": {},
+#     “green block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+
+========= step 1 =========
+# query: Put the yellow block in the gray bowl
+```generated:
+put_first_on_second("yellow block", "gray bowl")
+update_wm("Put the yellow block in the gray bowl")
+```
+```gold:
+put_first_on_second("yellow block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         }
+#     ],
+#     “silver block": {},
+#     “yellow block": {},
+#     “green block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 2 =========
+# query: The silver block is twice the weight of the green block
+```generated:
+update_wm("The silver block has twice the weight of the green block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {},
+#     “green block": {
+#         "weight": 1
+#     },
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 3 =========
+# query: The red block is twice the weight of the yellow block
+```generated:
+update_wm("The red block has twice the weight of the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 1
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 4 =========
+# query: Put the yellow block in the white bowl
+```generated:
+put_first_on_second("yellow block", "white bowl")
+update_wm("Put the yellow block in the white bowl")
+```
+```gold:
+put_first_on_second("yellow block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 1
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 5 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+update_wm("Put the red block in the gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         },
+#         {
+#             "subject": "red block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 1
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 6 =========
+# query: The green block is twice the weight of the yellow block
+```generated:
+update_wm("The green block has twice the weight of the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         },
+#         {
+#             "subject": "red block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 2
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+========= step 7 =========
+# query: Put the green block in the white bowl
+```generated:
+put_first_on_second("green block", "white bowl")
+update_wm("Put the green block in the white bowl")
+```
+```gold:
+put_first_on_second("green block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         },
+#         {
+#             "subject": "red block",
+#             "verb": "in",
+#             "object": "gray bowl"
+#         },
+#         {
+#             "subject": "green block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 2
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+========= step 8 =========
+# query: Remove blocks from the white bowl so that their total weight becomes identical to what is in the gray bowl. The removed blocks should be put on the table
+```generated:
+# THINK: In the gray bowl, we have red block
+# THINK: In the white bowl, we have yellow block and green block
+# THINK: The red block has weight 1
+# THINK: The yellow block has weight 0.5
+# THINK: The green block has weight 2
+# THINK: We need to remove a block that has weight 1.5
+# THINK: The block that has the weight 1.5 is silver block
+put_first_on_second("silver block", "table")
+update_wm("Remove the silver block from the white bowl and put it on the table")
+```
+```gold:
+put_first_on_second("green block", "table")
+```
+
+# state = {
+#     "objects" = ["silver block", "yellow block", green block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [
+#         {
+#             "subject": "yellow block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         },
+#         {
+#             "subject": "green block",
+#             "verb": "in",
+#             "object": "white bowl"
+#         },
+#         {
+#             "subject": "silver block",
+#             "verb": "on",
+#             "object": "table"
+#         }
+#     ],
+#     “silver block": {
+#         "weight": 2
+#     },
+#     “yellow block": {
+#         "weight": 0.5
+#     },
+#     “green block": {
+#         "weight": 2
+#     },
+#     “red block": {
+#         "weight": 1
+#     },
+#     “gray bowl”: {},
+#     “white bowl": {},
+#

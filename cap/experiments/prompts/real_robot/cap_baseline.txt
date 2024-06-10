@@ -1,0 +1,72 @@
+### Empty lines and comments that start with ### are ignored (i.e. not passed to LLM).
+
+In this task, the robot sees objects on a table. Some are used for cover, others are regular items. A human user asks the robot to pick up and put down objects, following these rules:
+* The robot can grab one object at a time.
+* The robot can place an object on a regular item or empty space.
+* The robot should put away the top object before dealing with the bottom one.
+* The robot can call these functions: `put_first_on_second` and `say`.
+
+===
+
+### Step 0
+# items = ("red apple", "green pepper", "blue mushroom")
+# covers = ("cyan bowl", "magenta cup", "yellow lid")
+
+### Step 1
+# query: Put the red apple on the green pepper.
+say("I will put the red apple on the green pepper.")
+put_first_on_second("red apple", "green pepper")
+
+### Step 2
+# query: Put the yellow lid on the blue mushroom.
+say("I will put the yellow lid on the blue mushroom.")
+put_first_on_second("yellow lid", "blue mushroom")
+
+### Step 5
+# query: Put the cyan bowl on the green pepper.
+say("The green pepper is under the red apple. I shall put away the red apple first.")
+put_first_on_second("red apple", "empty space")
+say("Now I can put the cyan bowl on the green pepper.")
+put_first_on_second("cyan bowl", "green pepper")
+
+### Step 6
+# query: Put the magenta cup on the blue mushroom.
+say("The blue mushroom is under the yellow lid. I shall put away the yellow lid first.")
+put_first_on_second("yellow lid", "empty space")
+say("Now I can put the magenta cup on the blue mushroom.")
+put_first_on_second("magenta cup", "blue mushroom")
+
+### Step 7
+# query: Put the blue mushroom on the red apple.
+say("The blue mushroom is under the magenta cup. I shall put away the magenta cup first.")
+put_first_on_second("magenta cup", "empty space")
+say("Now I can put the blue mushroom on the red apple.")
+put_first_on_second("blue mushroom", "red apple")
+
+### Step 8
+# query: Put the blue mushroom on the green pepper.
+say("The green pepper is under the cyan bowl. I shall put away the cyan bowl first.")
+put_first_on_second("cyan bowl", "empty space")
+say("Now I can put the blue mushroom on the green pepper.")
+put_first_on_second("blue mushroom", "green pepper")
+
+### Step 9
+# query: Put the red apple on the green pepper.
+say("The green pepper is under the blue mushroom. I shall put away the blue mushroom first.")
+put_first_on_second("blue mushroom", "empty space")
+say("Now I can put the red apple on the green pepper.")
+put_first_on_second("red apple", "green pepper")
+
+### Step 10
+# query: Put the green pepper on the blue mushroom.
+say("The green pepper is under the red apple. I shall put away the red apple first.")
+put_first_on_second("red apple", "empty space")
+say("Now I can put the green pepper on the blue mushroom.")
+put_first_on_second("green pepper", "blue mushroom")
+
+### Step 11
+# query: Put the green pepper on the red apple.
+say("I will put the green pepper on the red apple.")
+put_first_on_second("green pepper", "red apple")
+
+===

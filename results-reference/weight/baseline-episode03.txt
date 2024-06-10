@@ -1,0 +1,58 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: The transparent block is twice the weight of the blue block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 2 =========
+# query: Put the orange block in the gray bowl
+```generated:
+put_first_on_second("orange block", "gray bowl")
+```
+```gold:
+put_first_on_second("orange block", "gray bowl")
+```
+========= step 3 =========
+# query: The red block is twice the weight of the orange block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 4 =========
+# query: Put the orange block in the yellow bowl
+```generated:
+put_first_on_second("orange block", "yellow bowl")
+```
+```gold:
+put_first_on_second("orange block", "yellow bowl")
+```
+========= step 5 =========
+# query: Put the red block in the gray bowl
+```generated:
+put_first_on_second("red block", "gray bowl")
+```
+```gold:
+put_first_on_second("red block", "gray bowl")
+```
+========= step 6 =========
+# query: The blue block has the same weight of the orange block
+```generated:
+noop()
+```
+```gold:
+
+```
+========= step 7 =========
+# query: Put blocks in the yellow bowl so that their total weight becomes identical to what is in the gray bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("blue block", "yellow bowl")
+```

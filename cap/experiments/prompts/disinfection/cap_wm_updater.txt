@@ -1,0 +1,232 @@
+### All comments that start with three #s, as well as empty lines are ignored (i.e., not passed to LLM)
+### We assume that in the initial state, the box is always open (to avoid describing what's in the box as part of world state)
+### NOTE: things to consider
+### 1. Adding CoT (# THINK: blah)
+
+### Categories to keep in mind: ['box', 'metainfo', 'stack']
+
+### example 1
+
+In the following, the robot deals with dirty and clean blocks.
+A clean block becomes dirty when it touches another dirty block.
+This includes when a dirty block is stacked on top of a clean block, and also when a dirty block is right under a clean block.
+The table, bowls and the robot gripper are protected from any dirtiness, so they stay clean forever.
+When a dirty block is put into the disinfector, it becomes clean immediately.
+
+Each code is carefully designed by professionals to meet all of these requirements.
+
+===
+
+### example 1
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "cyan block": {},
+#     "yellow block": {},
+#     "brown block": {},
+#     "purple block": {},
+#     "blue block": {},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: The cyan and purple blocks are dirty
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {},
+#     "brown block": {},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: The brown block, yellow block, and blue block are clean
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["clean"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: Put the cyan block on the yellow block.
+# THINK: The cyan block is dirty
+# THINK: When the cyan block is on the yellow block, the yellow block becomes dirty
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [["cyan block is on yellow block"]],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["dirty"]},
+#     "brown block": {"is": ["clean"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: Put the brown block in the green bowl
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [["cyan block is on yellow block"]],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"],},
+#     "yellow block": {"is": ["dirty"]},
+#     "brown block": {"is": ["clean"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["brown block"]},
+#     "red bowl": {}
+# }
+
+# query: Put the brown block on the table, and make it dirty
+# THINK: The brown block becomes dirty
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [["cyan block is on yellow block"]],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["dirty"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: Put the cyan block on the table
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["dirty"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: Put the yellow block in the disinfector
+
+# state = {
+#     "relations": [],
+#     "disinfector": {"contains": ["yellow block"]},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {},
+#     "red bowl": {}
+# }
+
+# query: Put the blue and yellow blocks in green bowl
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": []},
+#     "cyan block": {"is": ["dirty"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["dirty"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["blue block", "yellow block"]},
+#     "red bowl": {}
+# }
+
+# query: Put the cyan and purple block in the disinfector
+# THINK: cyan and purple block become clean
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": ["cyan block", "purple block"]},
+#     "cyan block": {"is": ["clean"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["clean"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["blue block", "yellow block"]},
+#     "red bowl": {}
+# }
+
+# query: Put the brown block in the red bowl
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": ["cyan block", "purple block"]},
+#     "cyan block": {"is": ["clean"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["clean"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["blue block", "yellow block"]},
+#     "red bowl": {"contains": ["brown block"]}
+# }
+
+# query: Put the blue block on the table
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": ["cyan block", "purple block"]},
+#     "cyan block": {"is": ["clean"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["clean"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["yellow block"]},
+#     "red bowl": {"contains": ["brown block"]}
+# }
+
+# query: Put the yellow block on the table
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": ["cyan block", "purple block"]},
+#     "cyan block": {"is": ["clean"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["clean"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": []},
+#     "red bowl": {"contains": ["brown block"]}
+# }
+
+# query: Put the brown block in the green bowl
+
+# state = {
+#     "objects": ["cyan block", "yellow block", "brown block", "purple block", "blue block", "green bowl", "red bowl", "disinfector"],
+#     "relations": [],
+#     "disinfector": {"contains": ["purple block", "blue block"]},
+#     "cyan block": {"is": ["clean"]},
+#     "yellow block": {"is": ["clean"]},
+#     "brown block": {"is": ["dirty"]},
+#     "purple block": {"is": ["clean"]},
+#     "blue block": {"is": ["clean"]},
+#     "green bowl": {"contains": ["brown block"]},
+#     "red bowl": {}
+# }
+
+===

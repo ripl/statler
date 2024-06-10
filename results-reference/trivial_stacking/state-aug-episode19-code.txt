@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 9 =========
+>> generated
+# THINK: The stack is silver block on top of the golden bowl
+say("silver block")
+---------
+>> gold
+say("white block")
+---------

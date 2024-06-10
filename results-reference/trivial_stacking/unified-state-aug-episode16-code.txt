@@ -1,0 +1,17 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+put_first_on_second("yellow block", "plastic bowl")
+update_wm("Put the yellow block in the plastic bowl")
+---------
+>> gold
+put_first_on_second("yellow block", "bronze bowl")
+---------
+========= step 8 =========
+>> generated
+# THINK: The black block is on the table, so the green block, gray block, bronze block, and yellow block are all in a higher position.
+say("four blocks")
+---------
+>> gold
+say("there are two blocks")
+---------

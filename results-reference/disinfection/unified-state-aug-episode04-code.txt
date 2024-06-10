@@ -1,0 +1,10 @@
+========= step 0 =========
+========= step 7 =========
+>> generated
+put_first_on_second("cyan block", "magenta bowl")
+update_wm("Put the cyan block in the magenta bowl")
+---------
+>> gold
+put_first_on_second("blue block", "magenta bowl")
+update_wm("Put the blue block in the magenta bowl.")
+---------

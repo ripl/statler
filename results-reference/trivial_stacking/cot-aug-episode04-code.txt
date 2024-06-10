@@ -1,0 +1,9 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: The red block is on the blue block
+say("no")
+---------
+>> gold
+say("yes")
+---------

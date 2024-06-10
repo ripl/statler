@@ -1,0 +1,15 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+say("yes")
+---------
+>> gold
+say("no")
+---------
+========= step 6 =========
+>> generated
+say("one")
+---------
+>> gold
+say("there are two blocks in the plastic bowl")
+---------

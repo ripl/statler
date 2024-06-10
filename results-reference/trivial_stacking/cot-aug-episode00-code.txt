@@ -1,0 +1,17 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The green block is on the orange block
+say("green")
+---------
+>> gold
+say("green block")
+---------
+========= step 6 =========
+>> generated
+# THINK: The white block is in the silver bowl and the black block is on the green block
+say("yes")
+---------
+>> gold
+say("no")
+---------

@@ -1,0 +1,232 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#     "relations": [],
+#     “gray block": {},
+#     “yellow block": {},
+#     “black block": {},
+#     “red block": {},
+#     “gray bowl”: {},
+#     “white bowl": {},
+# }
+
+========= step 1 =========
+# query: The gray block has the same weight as the black block
+```generated:
+update_wm("The gray block has the same weight as the black block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block"
+#      },
+#      “yellow block": {},
+#      “black block": {
+#          "weight": "same as gray block"
+#      },
+#      “red block": {},
+#      “gray bowl”: {},
+#      “white bowl": {},
+# }
+========= step 2 =========
+# query: Put the gray block in the white bowl
+```generated:
+put_first_on_second("gray block", "white bowl")
+update_wm("Put the gray block in the white bowl")
+```
+```gold:
+put_first_on_second("gray block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block",
+#          "location": "white bowl"
+#      },
+#      “yellow block": {},
+#      “black block": {
+#          "weight": "same as gray block"
+#      },
+#      “red block": {},
+#      “gray bowl”: {},
+#      “white bowl": {},
+# }
+========= step 3 =========
+# query: The red block has the weight as the yellow block
+```generated:
+update_wm("The red block has the same weight as the yellow block")
+```
+```gold:
+
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          },
+#          {
+#              "subject": "red block",
+#              "predicate": "has the same weight as",
+#              "object": "yellow block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block",
+#          "location": "white bowl"
+#      },
+#      “yellow block": {
+#          "weight": "same as red block"
+#      },
+#      “black block": {
+#          "weight": "same as gray block"
+#      },
+#      “red block": {
+#          "weight": "same as yellow block"
+#      },
+#      “gray bowl”: {},
+#      “white bowl": {},
+========= step 4 =========
+# query: Put the gray block in the gray bowl
+```generated:
+put_first_on_second("gray block", "gray bowl")
+update_wm("Put the gray block in the gray bowl")
+```
+```gold:
+put_first_on_second("gray block", "gray bowl")
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          },
+#          {
+#              "subject": "red block",
+#              "predicate": "has the same weight as",
+#              "object": "yellow block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block",
+#          "location": "gray bowl"
+#      },
+#      “yellow block": {
+#          "weight": "same as red block"
+#      },
+#      “black block": {
+#          "weight": "same as gray block"
+#      },
+#      “red block": {
+#          "weight": "same as yellow block"
+#      },
+#      “gray bowl”: {},
+#      “white bowl": {},
+========= step 5 =========
+# query: Put the red block in the white bowl
+```generated:
+put_first_on_second("red block", "white bowl")
+update_wm("Put the red block in the white bowl")
+```
+```gold:
+put_first_on_second("red block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          },
+#          {
+#              "subject": "red block",
+#              "predicate": "has the same weight as",
+#              "object": "yellow block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block",
+#          "location": "gray bowl"
+#      },
+#      “yellow block": {
+#          "weight": "same as red block"
+#      },
+#      “black block": {
+#          "weight": "same as gray block"
+#      },
+#      “red block": {
+#          "weight": "same as yellow block",
+#          "location": "white bowl"
+#      },
+#      “gray bowl”: {},
+========= step 6 =========
+# query: Put blocks in both bowls so that the sums of the weights of blocks in each of the two bowls becomes identical
+```generated:
+# THINK: We need to move the red block from the white bowl to the gray bowl
+# THINK: We need to move the black block from the gray bowl to the white bowl
+put_first_on_second("red block", "gray bowl")
+put_first_on_second("black block", "white bowl")
+update_wm("Put blocks in both bowls so that the sums of the weights of blocks in each of the two bowls becomes identical")
+```
+```gold:
+put_first_on_second("yellow block", "gray bowl"),
+            put_first_on_second("black block", "white bowl")
+```
+
+# state = {
+#     "objects" = ["gray block", "yellow block", black block", "red block", "gray bowl", "white bowl", table"],
+#      "relations": [
+#          {
+#              "subject": "gray block",
+#              "predicate": "has the same weight as",
+#              "object": "black block"
+#          },
+#          {
+#              "subject": "red block",
+#              "predicate": "has the same weight as",
+#              "object": "yellow block"
+#          }
+#      ],
+#      “gray block": {
+#          "weight": "same as black block",
+#          "location": "gray bowl"
+#      },
+#      “yellow block": {
+#          "weight": "same as red block",
+#          "location": "gray bowl"
+#      },
+#      “black block": {
+#          "weight": "same as gray block",
+#          "location": "white bowl"
+#      },
+#      “red block": {
+#          "weight": "same as yellow block",
+#          "location":

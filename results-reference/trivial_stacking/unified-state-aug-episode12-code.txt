@@ -1,0 +1,17 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The golden bowl contains the green block
+say("green")
+
+---------
+>> gold
+say("green block")
+---------
+========= step 6 =========
+>> generated
+say("four blocks")
+---------
+>> gold
+say("three blocks are not in the bowls")
+---------

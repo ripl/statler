@@ -1,0 +1,66 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: put the black block in the bronze bowl
+```generated:
+put_first_on_second("black block", "bronze bowl")
+```
+```gold:
+put_first_on_second("black block", "bronze bowl")
+```
+========= step 2 =========
+# query: put the black block on the table
+```generated:
+put_first_on_second("black block", "table")
+```
+```gold:
+put_first_on_second("black block", "table")
+```
+========= step 3 =========
+# query: put the gray block on the black block
+```generated:
+put_first_on_second("gray block", "black block")
+```
+```gold:
+put_first_on_second("gray block", "black block")
+```
+========= step 4 =========
+# query: put the bronze block in the plastic bowl
+```generated:
+put_first_on_second("bronze block", "plastic bowl")
+```
+```gold:
+put_first_on_second("bronze block", "plastic bowl")
+```
+========= step 5 =========
+# query: put the yellow block in the empty bowl
+```generated:
+put_first_on_second("yellow block", "empty bowl")
+```
+```gold:
+put_first_on_second("yellow block", "bronze bowl")
+```
+========= step 6 =========
+# query: put the green block on the bronze block
+```generated:
+put_first_on_second("green block", "bronze block")
+```
+```gold:
+put_first_on_second("green block", "bronze block")
+```
+========= step 7 =========
+# query: how many blocks are in a position lower than the gray block
+```generated:
+
+```
+```gold:
+say("there are three blocks")
+```
+========= step 8 =========
+# query: is bronze block in the bronze bowl
+```generated:
+say("yes")
+```
+```gold:
+say("no")
+```

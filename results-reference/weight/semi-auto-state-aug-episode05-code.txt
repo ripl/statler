@@ -1,0 +1,16 @@
+========= step 0 =========
+========= step 8 =========
+>> generated
+# THINK: In the gray bowl, we have red block
+# THINK: In the white bowl, we have yellow block and green block
+# THINK: The red block has weight 1
+# THINK: The yellow block has weight 0.5
+# THINK: The green block has weight 2
+# THINK: We need to remove a block that has weight 1.5
+# THINK: The block that has the weight 1.5 is silver block
+put_first_on_second("silver block", "table")
+update_wm("Remove the silver block from the white bowl and put it on the table")
+---------
+>> gold
+put_first_on_second("green block", "table")
+---------

@@ -1,0 +1,135 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: the red block and the green block are dirty.
+```generated:
+noop()
+```
+```gold:
+update_wm("the red block and the green block are dirty.")
+```
+========= step 2 =========
+# query: Put the red block in the rust bowl
+```generated:
+put_first_on_second("red block", "rust bowl")
+```
+```gold:
+put_first_on_second("red block", "rust bowl")
+update_wm("Put the red block in the rust bowl.")
+```
+========= step 3 =========
+# query: the pink block is clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the pink block is clean.")
+```
+========= step 4 =========
+# query: Put the pink block in the magenta bowl
+```generated:
+put_first_on_second("pink block", "magenta bowl")
+```
+```gold:
+put_first_on_second("pink block", "magenta bowl")
+update_wm("Put the pink block in the magenta bowl.")
+```
+========= step 5 =========
+# query: Put the pink block on the table.
+```generated:
+put_first_on_second("pink block", "table")
+```
+```gold:
+put_first_on_second("pink block", "table")
+update_wm("Put the pink block on the table.")
+```
+========= step 6 =========
+# query: Put the red block on the pink block
+```generated:
+put_first_on_second("red block", "pink block")
+```
+```gold:
+put_first_on_second("red block", "pink block")
+update_wm("Put the red block on the pink block. the pink block becomes dirty.")
+```
+========= step 7 =========
+# query: the blue block is clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the blue block is clean.")
+```
+========= step 8 =========
+# query: Put the blue block on the red block
+```generated:
+put_first_on_second("blue block", "red block")
+```
+```gold:
+put_first_on_second("blue block", "red block")
+update_wm("Put the blue block on the red block. the blue block becomes dirty.")
+```
+========= step 9 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+put_first_on_second("red block", "table")
+put_first_on_second("green block", "table")
+```
+```gold:
+put_first_on_second("red block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("pink block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the red block, the green block, the pink block, and the blue block on the relations.")
+```
+========= step 10 =========
+# query: Put the red block, the pink block, the blue block, and the red block in the disinfector
+```generated:
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("green block", "disinfector")
+```
+```gold:
+put_first_on_second("red block", "disinfector")
+put_first_on_second("pink block", "disinfector")
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("red block", "disinfector")
+update_wm("Put the red block, the pink block, the blue block, and the red block in the disinfector. the red block, the pink block, the blue block, and the red block become clean.")
+```
+========= step 11 =========
+# query: Put the green block in the tan bowl
+```generated:
+put_first_on_second("green block", "tan bowl")
+```
+```gold:
+put_first_on_second("green block", "tan bowl")
+update_wm("Put the green block in the tan bowl.")
+```
+========= step 12 =========
+# query: Put the green block on the table.
+```generated:
+put_first_on_second("green block", "table")
+```
+```gold:
+put_first_on_second("green block", "table")
+update_wm("Put the green block on the table.")
+```
+========= step 13 =========
+# query: Put the red block on the green block
+```generated:
+put_first_on_second("red block", "green block")
+```
+```gold:
+put_first_on_second("red block", "green block")
+update_wm("Put the red block on the green block. the red block becomes dirty.")
+```
+========= step 14 =========
+# query: Put the pink block on the red block
+```generated:
+put_first_on_second("pink block", "red block")
+```
+```gold:
+put_first_on_second("pink block", "red block")
+update_wm("Put the pink block on the red block. the pink block becomes dirty.")
+```

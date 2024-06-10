@@ -1,0 +1,54 @@
+import numpy as np
+from shapely.geometry import *
+from shapely.affinity import *
+from env_utils import denormalize_xy, parse_obj_name, get_obj_names, get_obj_pos
+
+# a 30cm horizontal line in the middle with 3 points.
+middle_pos = denormalize_xy([0.5, 0.5])
+start_pos = middle_pos + [-0.3/2, 0]
+end_pos = middle_pos + [0.3/2, 0]
+line = make_line(start=start_pos, end=end_pos)
+points = interpolate_pts_on_line(line=line, n=3)
+ret_val = points
+# a 20cm vertical line near the right with 4 points.
+middle_pos = denormalize_xy([1, 0.5])
+start_pos = middle_pos + [0, -0.2/2]
+end_pos = middle_pos + [0, 0.2/2]
+line = make_line(start=start_pos, end=end_pos)
+points = interpolate_pts_on_line(line=line, n=4)
+ret_val = points
+# a diagonal line from the top left to the bottom right corner with 5 points.
+top_left_corner = denormalize_xy([0, 1])
+bottom_right_corner = denormalize_xy([1, 0])
+line = make_line(start=top_left_corner, end=bottom_right_corner)
+points = interpolate_pts_on_line(line=line, n=5)
+ret_val = points
+# a triangle with size 10cm with 3 points.
+polygon = make_triangle(size=0.1, center=denormalize_xy([0.5, 0.5]))
+points = get_points_from_polygon(polygon)
+ret_val = points
+# the corner closest to the sun colored block.
+block_name = parse_obj_name('the sun colored block', f'objects = {get_obj_names()}')
+corner_positions = np.array([denormalize_xy(pos) for pos in [[0, 0], [0, 1], [1, 1], [1, 0]]])
+closest_corner_pos = get_closest_point(points=corner_positions, point=get_obj_pos(block_name))
+ret_val = closest_corner_pos
+# the side farthest from the right most bowl.
+bowl_name = parse_obj_name('the right most bowl', f'objects = {get_obj_names()}')
+side_positions = np.array([denormalize_xy(pos) for pos in [[0.5, 0], [0.5, 1], [1, 0.5], [0, 0.5]]])
+farthest_side_pos = get_farthest_point(points=side_positions, point=get_obj_pos(bowl_name))
+ret_val = farthest_side_pos
+# a point above the third block from the bottom.
+block_name = parse_obj_name('the third block from the bottom', f'objects = {get_obj_names()}')
+ret_val = get_obj_pos(block_name) + [0.1, 0]
+# a point 10cm left of the bowls.
+bowl_names = parse_obj_name('the bowls', f'objects = {get_obj_names()}')
+bowl_positions = get_all_object_positions_np(obj_names=bowl_names)
+left_obj_pos = bowl_positions[np.argmin(bowl_positions[:, 0])] + [-0.1, 0]
+ret_val = left_obj_pos
+# the bottom side.
+bottom_pos = denormalize_xy([0.5, 0])
+ret_val = bottom_pos
+# the top corners.
+top_left_pos = denormalize_xy([0, 1])
+top_right_pos = denormalize_xy([1, 1])
+ret_val = [top_left_pos, top_right_pos]

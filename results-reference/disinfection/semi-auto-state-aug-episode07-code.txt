@@ -1,0 +1,27 @@
+========= step 0 =========
+========= step 3 =========
+>> generated
+# THINK: The clean blocks are the red block and the white block
+put_first_on_second("red block", "table")
+put_first_on_second("white block", "table")
+update_wm("Put the red and white blocks on the table")
+---------
+>> gold
+put_first_on_second("white block", "table")
+put_first_on_second("green block", "table")
+update_wm("Put the white block and the green block on the relations.")
+---------
+========= step 7 =========
+>> generated
+update_wm("Put all the dirty blocks on the table.")
+put_first_on_second("red block", "table")
+put_first_on_second("white block", "table")
+put_first_on_second("green block", "table")
+update_wm("Put the red, white, and green blocks on the table.")
+---------
+>> gold
+put_first_on_second("white block", "table")
+put_first_on_second("green block", "table")
+put_first_on_second("red block", "table")
+update_wm("Put the white block, the green block, and the red block on the relations.")
+---------

@@ -1,0 +1,112 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: the yellow block and the purple block are clean.
+```generated:
+noop()
+```
+```gold:
+update_wm("the yellow block and the purple block are clean.")
+```
+========= step 2 =========
+# query: The other blocks are dirty
+```generated:
+noop()
+```
+```gold:
+update_wm("the green block and the white block are dirty.")
+```
+========= step 3 =========
+# query: Woops, somebody accidentally polluted the yellow block and the purple block
+```generated:
+noop()
+```
+```gold:
+update_wm("the yellow block and the purple block become dirty.")
+```
+========= step 4 =========
+# query: Put the green block, the white block, and the yellow block in the disinfector
+```generated:
+put_first_on_second("green block", "disinfector")
+put_first_on_second("white block", "disinfector")
+put_first_on_second("yellow block", "disinfector")
+```
+```gold:
+put_first_on_second("green block", "disinfector")
+put_first_on_second("white block", "disinfector")
+put_first_on_second("yellow block", "disinfector")
+update_wm("Put the green block, the white block, and the yellow block in the disinfector. the green block, the white block, and the yellow block become clean.")
+```
+========= step 5 =========
+# query: Put the green block in the tan bowl
+```generated:
+put_first_on_second("green block", "tan bowl")
+```
+```gold:
+put_first_on_second("green block", "tan bowl")
+update_wm("Put the green block in the tan bowl.")
+```
+========= step 6 =========
+# query: Put the yellow block in the lavender bowl
+```generated:
+put_first_on_second("yellow block", "lavender bowl")
+```
+```gold:
+put_first_on_second("yellow block", "lavender bowl")
+update_wm("Put the yellow block in the lavender bowl.")
+```
+========= step 7 =========
+# query: Put the green block on the table.
+```generated:
+put_first_on_second("green block", "table")
+```
+```gold:
+put_first_on_second("green block", "table")
+update_wm("Put the green block on the table.")
+```
+========= step 8 =========
+# query: Put the white block on the green block
+```generated:
+put_first_on_second("white block", "green block")
+```
+```gold:
+put_first_on_second("white block", "green block")
+update_wm("Put the white block on the green block.")
+```
+========= step 9 =========
+# query: Put the yellow block on the table.
+```generated:
+put_first_on_second("yellow block", "table")
+```
+```gold:
+put_first_on_second("yellow block", "table")
+update_wm("Put the yellow block on the table.")
+```
+========= step 10 =========
+# query: Put the purple block on the yellow block
+```generated:
+put_first_on_second("purple block", "yellow block")
+```
+```gold:
+put_first_on_second("purple block", "yellow block")
+update_wm("Put the purple block on the yellow block. the yellow block becomes dirty.")
+```
+========= step 11 =========
+# query: Put the purple block on the table
+```generated:
+put_first_on_second("purple block", "table")
+```
+```gold:
+put_first_on_second("purple block", "table")
+update_wm("Put the purple block on the table.")
+```
+========= step 12 =========
+# query: Put all the dirty blocks in the tan bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("purple block", "tan bowl")
+put_first_on_second("yellow block", "tan bowl")
+update_wm("Put the purple block and the yellow block in the tan bowl.")
+```

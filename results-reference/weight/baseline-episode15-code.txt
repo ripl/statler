@@ -1,0 +1,29 @@
+========= step 0 =========
+========= step 2 =========
+>> generated
+say("yes")
+---------
+>> gold
+
+---------
+========= step 4 =========
+>> generated
+say("yes")
+---------
+>> gold
+
+---------
+========= step 6 =========
+>> generated
+say("no")
+---------
+>> gold
+
+---------
+========= step 7 =========
+>> generated
+
+---------
+>> gold
+put_first_on_second("green block", "blue bowl")
+---------

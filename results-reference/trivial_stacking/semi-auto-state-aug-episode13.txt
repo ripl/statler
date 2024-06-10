@@ -1,0 +1,135 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#     "relations": [],
+#     “brown block": {},
+#     “yellow block": {},
+#     “red block": {},
+#     “green block": {},
+#     “golden bowl”: {},
+#     "silver bowl": {},
+# }
+
+========= step 1 =========
+# query: place the green block in the golden bowl
+```generated:
+put_first_on_second("green block", "golden bowl")
+update_wm("Put the green block in the golden bowl")
+```
+```gold:
+put_first_on_second("green block", "golden bowl")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"]],
+#      “brown block": {},
+#      “yellow block": {},
+#      “red block": {},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {},
+# }
+========= step 2 =========
+# query: put the red block in the silver bowl
+```generated:
+put_first_on_second("red block", "silver bowl")
+update_wm("Put the red block in the silver bowl")
+```
+```gold:
+put_first_on_second("red block", "silver bowl")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"], ["red block", "silver bowl"]],
+#      “brown block": {},
+#      “yellow block": {},
+#      “red block": {"in": "silver bowl"},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {"contains": "red block"},
+# }
+========= step 3 =========
+# query: Put the yellow block on the brown block
+```generated:
+put_first_on_second("yellow block", "brown block")
+update_wm("Put the yellow block on the brown block")
+```
+```gold:
+put_first_on_second("yellow block", "brown block")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"], ["red block", "silver bowl"], ["yellow block", "brown block"]],
+#      “brown block": {"contains": "yellow block"},
+#      “yellow block": {"on": "brown block"},
+#      “red block": {"in": "silver bowl"},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {"contains": "red block"},
+# }
+========= step 4 =========
+# query: place the block in the silver bowl on the yellow block
+```generated:
+# THINK: The block in the silver bowl is the red block
+put_first_on_second("red block", "yellow block")
+update_wm("Put the red block on the yellow block")
+```
+```gold:
+put_first_on_second("red block", "yellow block")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"], ["yellow block", "red block"], ["yellow block", "brown block"]],
+#      “brown block": {"contains": "yellow block"},
+#      “yellow block": {"on": "brown block", "contains": "red block"},
+#      “red block": {"on": "yellow block"},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {},
+# }
+========= step 5 =========
+# query: how many blocks are in positions higher than the brown block
+```generated:
+# THINK: The brown block is on the table, so the yellow block and red block are in higher positions
+say("two blocks")
+```
+```gold:
+say("two blocks are in positions higher than the brown block")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"], ["yellow block", "red block"], ["yellow block", "brown block"]],
+#      “brown block": {"contains": "yellow block"},
+#      “yellow block": {"on": "brown block", "contains": "red block"},
+#      “red block": {"on": "yellow block"},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {},
+# }
+========= step 6 =========
+# query: which blocks (if there's any) are in positions higher than the brown block
+```generated:
+# THINK: The yellow block is on the brown block, and the red block is on the yellow block.
+# THINK: Thus, the red block is in a higher position than the brown block.
+say("The red block is in a higher position than the brown block.")
+```
+```gold:
+say("yellow block", "red block")
+```
+
+# state = {
+#     "objects": ["brown block", "yellow block", "red block", "green block", "golden bowl", "silver bowl"],
+#      "relations": [["green block", "golden bowl"], ["yellow block", "red block"], ["yellow block", "brown block"]],
+#      “brown block": {"contains": "yellow block"},
+#      “yellow block": {"on": "brown block", "contains": "red block"},
+#      “red block": {"on": "yellow block"},
+#      “green block": {"in": "golden bowl"},
+#      “golden bowl”: {"contains": "green block"},
+#      "silver bowl": {},
+# }

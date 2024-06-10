@@ -1,0 +1,74 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: put the black block in the silver bowl
+```generated:
+put_first_on_second("black block", "silver bowl")
+```
+```gold:
+put_first_on_second("black block", "silver bowl")
+```
+========= step 2 =========
+# query: put the black block on the table
+```generated:
+put_first_on_second("black block", "table")
+```
+```gold:
+put_first_on_second("black block", "table")
+```
+========= step 3 =========
+# query: put the gray block on the black block
+```generated:
+put_first_on_second("gray block", "black block")
+```
+```gold:
+put_first_on_second("gray block", "black block")
+```
+========= step 4 =========
+# query: put the silver block in the golden bowl
+```generated:
+put_first_on_second("silver block", "golden bowl")
+```
+```gold:
+put_first_on_second("silver block", "golden bowl")
+```
+========= step 5 =========
+# query: put the yellow block in the empty bowl
+```generated:
+
+```
+```gold:
+put_first_on_second("yellow block", "silver bowl")
+```
+========= step 6 =========
+# query: put the white block on the silver block
+```generated:
+put_first_on_second("white block", "silver block")
+```
+```gold:
+put_first_on_second("white block", "silver block")
+```
+========= step 7 =========
+# query: put the yellow block on the white block
+```generated:
+put_first_on_second("yellow block", "white block")
+```
+```gold:
+put_first_on_second("yellow block", "white block")
+```
+========= step 8 =========
+# query: is the black block in the silver bowl
+```generated:
+say("no")
+```
+```gold:
+say("no")
+```
+========= step 9 =========
+# query: which block is in the middle of the stack in the golden bowl
+```generated:
+say("silver block")
+```
+```gold:
+say("white block")
+```

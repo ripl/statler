@@ -1,0 +1,11 @@
+========= step 0 =========
+========= step 11 =========
+>> generated
+put_first_on_second("teal block", "table")
+update_wm("Put the teal block on the table")
+---------
+>> gold
+put_first_on_second("teal block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put the teal block and the blue block on the relations.")
+---------

@@ -1,0 +1,15 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+
+---------
+>> gold
+say("no")
+---------
+========= step 6 =========
+>> generated
+say("white block")
+---------
+>> gold
+say("white block", "purple block")
+---------

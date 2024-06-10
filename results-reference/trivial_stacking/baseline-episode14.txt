@@ -1,0 +1,50 @@
+========= step 0 =========
+
+========= step 1 =========
+# query: put the white block in the orange bowl
+```generated:
+put_first_on_second("white block", "orange bowl")
+```
+```gold:
+put_first_on_second("white block", "orange bowl")
+```
+========= step 2 =========
+# query: put the gray block on the white block
+```generated:
+put_first_on_second("gray block", "white block")
+```
+```gold:
+put_first_on_second("gray block", "white block")
+```
+========= step 3 =========
+# query: put the orange block in the empty bowl
+```generated:
+put_first_on_second("orange block", "plastic bowl")
+```
+```gold:
+put_first_on_second("orange block", "plastic bowl")
+```
+========= step 4 =========
+# query: put the red block on the orange block
+```generated:
+put_first_on_second("red block", "orange block")
+```
+```gold:
+put_first_on_second("red block", "orange block")
+```
+========= step 5 =========
+# query: how many blocks are in positions lower than the gray block
+```generated:
+say("two blocks")
+```
+```gold:
+say("two blocks")
+```
+========= step 6 =========
+# query: how many blocks (if there is any) are in positions higher than the gray block
+```generated:
+say("one block")
+```
+```gold:
+say("no blocks are in positions higher than the gray block")
+```

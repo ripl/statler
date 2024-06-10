@@ -1,0 +1,200 @@
+========= step 0 =========
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {}, 
+#     "black block": {}, 
+#     "cyan block": {}, 
+#     "blue block": {}, 
+#     "tan bowl": {}
+# }
+========= step 1 =========
+# query: the teal block and the black block are dirty.
+```generated:
+update_wm("The teal and black blocks are dirty")
+```
+```gold:
+update_wm("the teal block and the black block are dirty.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {}, 
+#     "blue block": {}, 
+#     "tan bowl": {}
+# }
+========= step 2 =========
+# query: The other blocks are clean
+```generated:
+update_wm("The cyan and blue blocks are clean")
+```
+```gold:
+update_wm("the blue block and the cyan block are clean.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["clean"]}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "tan bowl": {}
+# }
+========= step 3 =========
+# query: Woops, somebody accidentally polluted the cyan block and the blue block
+```generated:
+update_wm("The cyan and blue blocks are now dirty")
+```
+```gold:
+update_wm("the cyan block and the blue block become dirty.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["dirty"]}, 
+#     "tan bowl": {}
+# }
+========= step 4 =========
+# query: Put the cyan block on the teal block
+```generated:
+put_first_on_second("cyan block", "teal block")
+update_wm("Put the cyan block on the teal block")
+```
+```gold:
+put_first_on_second("cyan block", "teal block")
+update_wm("Put the cyan block on the teal block.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [["cyan block is on teal block"]], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["dirty"]}, 
+#     "tan bowl": {}
+# }
+========= step 5 =========
+# query: Put the blue block and the black block in the disinfector
+```generated:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("black block", "disinfector")
+update_wm("Put the blue and black blocks in the disinfector")
+```
+```gold:
+put_first_on_second("blue block", "disinfector")
+put_first_on_second("black block", "disinfector")
+update_wm("Put the blue block and the black block in the disinfector. the blue block and the black block become clean.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [["cyan block is on teal block"]], 
+#     "disinfector": {"contains": ["blue block", "black block"]}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["clean"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "tan bowl": {}
+# }
+========= step 6 =========
+# query: Put the blue block in the tan bowl
+```generated:
+put_first_on_second("blue block", "tan bowl")
+update_wm("Put the blue block in the tan bowl")
+```
+```gold:
+put_first_on_second("blue block", "tan bowl")
+update_wm("Put the blue block in the tan bowl.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [["cyan block is on teal block"]], 
+#     "disinfector": {"contains": ["black block"]}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["clean"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "tan bowl": {"contains": ["blue block"]}
+# }
+========= step 7 =========
+# query: Put the blue block on the table.
+```generated:
+put_first_on_second("blue block", "table")
+update_wm("Put the blue block on the table")
+```
+```gold:
+put_first_on_second("blue block", "table")
+update_wm("Put the blue block on the table.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [["cyan block is on teal block"]], 
+#     "disinfector": {"contains": ["black block"]}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["clean"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["clean"]}, 
+#     "tan bowl": {}
+# }
+========= step 8 =========
+# query: Put the black block on the blue block
+```generated:
+put_first_on_second("black block", "blue block")
+update_wm("Put the black block on the blue block")
+```
+```gold:
+put_first_on_second("black block", "blue block")
+update_wm("Put the black block on the blue block.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [["cyan block is on teal block"], ["black block is on blue block"]], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["dirty"]}, 
+#     "tan bowl": {}
+# }
+========= step 9 =========
+# query: Put all the dirty blocks on the table.
+```generated:
+put_first_on_second("teal block", "table")
+put_first_on_second("black block", "table")
+put_first_on_second("cyan block", "table")
+put_first_on_second("blue block", "table")
+update_wm("Put all the dirty blocks on the table")
+```
+```gold:
+put_first_on_second("teal block", "table")
+put_first_on_second("cyan block", "table")
+update_wm("Put the teal block and the cyan block on the relations.")
+```
+
+# state = {
+#     "objects": ["teal block", "black block", "cyan block", "blue block", "tan bowl", "disinfector"], 
+#     "relations": [], 
+#     "disinfector": {"contains": []}, 
+#     "teal block": {"is": ["dirty"]}, 
+#     "black block": {"is": ["dirty"]}, 
+#     "cyan block": {"is": ["dirty"]}, 
+#     "blue block": {"is": ["dirty"]}, 
+#     "tan bowl": {}
+# }

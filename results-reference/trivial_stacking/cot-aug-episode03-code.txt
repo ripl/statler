@@ -1,0 +1,11 @@
+========= step 0 =========
+========= step 6 =========
+>> generated
+# THINK: The black block is in the golden bowl
+# THINK: The purple block is on the table
+# THINK: Thus the purple block is in a higher position
+say("yes")
+---------
+>> gold
+say("no (black block is in the golden bowl, purple block is on the table)")
+---------

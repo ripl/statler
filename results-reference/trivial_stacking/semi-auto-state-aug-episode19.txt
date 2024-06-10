@@ -1,0 +1,203 @@
+========= step 0 =========
+
+# state = # state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#     "relations": [],
+#     “white block": {},
+#     “silver block": {},
+#     “black block": {},
+#     “gray block": {},
+#     "yellow block": {},
+#     “silver bowl”: {},
+#     "golden bowl": {},
+# }
+
+========= step 1 =========
+# query: put the black block in the silver bowl
+```generated:
+put_first_on_second("black block", "silver bowl")
+update_wm("Put the black block in the silver bowl")
+```
+```gold:
+put_first_on_second("black block", "silver bowl")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [["black block", "silver bowl"]],
+#      “white block": {},
+#      “silver block": {},
+#      “black block": {"location": "silver bowl"},
+#      “gray block": {},
+#      "yellow block": {},
+#      “silver bowl”: {"contains": ["black block"]},
+#      "golden bowl": {},
+# }
+========= step 2 =========
+# query: put the black block on the table
+```generated:
+put_first_on_second("black block", "table")
+update_wm("Put the black block on the table")
+```
+```gold:
+put_first_on_second("black block", "table")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {},
+#      “silver block": {},
+#      “black block": {"location": "table"},
+#      “gray block": {},
+#      "yellow block": {},
+#      “silver bowl”: {},
+#      "golden bowl": {},
+# }
+========= step 3 =========
+# query: put the gray block on the black block
+```generated:
+put_first_on_second("gray block", "black block")
+update_wm("Put the gray block on the black block")
+```
+```gold:
+put_first_on_second("gray block", "black block")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {},
+#      “silver block": {},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {},
+#      “silver bowl”: {},
+#      "golden bowl": {},
+# }
+========= step 4 =========
+# query: put the silver block in the golden bowl
+```generated:
+put_first_on_second("silver block", "golden bowl")
+update_wm("Put the silver block in the golden bowl")
+```
+```gold:
+put_first_on_second("silver block", "golden bowl")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {},
+#      “silver bowl”: {},
+#      "golden bowl": {"contains": ["silver block"]},
+# }
+========= step 5 =========
+# query: put the yellow block in the empty bowl
+```generated:
+put_first_on_second("yellow block", "silver bowl")
+update_wm("Put the yellow block in the silver bowl")
+```
+```gold:
+put_first_on_second("yellow block", "silver bowl")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {"location": "silver bowl"},
+#      “silver bowl”: {"contains": ["yellow block"]},
+#      "golden bowl": {"contains": ["silver block"]},
+# }
+========= step 6 =========
+# query: put the white block on the silver block
+```generated:
+put_first_on_second("white block", "silver block")
+update_wm("Put the white block on the silver block")
+```
+```gold:
+put_first_on_second("white block", "silver block")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {"location": "silver block"},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {"location": "silver bowl"},
+#      “silver bowl”: {"contains": ["yellow block"]},
+#      "golden bowl": {"contains": ["silver block"]},
+# }
+========= step 7 =========
+# query: put the yellow block on the white block
+```generated:
+put_first_on_second("yellow block", "white block")
+update_wm("Put the yellow block on the white block")
+```
+```gold:
+put_first_on_second("yellow block", "white block")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {"location": "table", "contains": ["yellow block"]},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {"location": "white block"},
+#      “silver bowl”: {},
+#      "golden bowl": {"contains": ["silver block"]},
+# }
+========= step 8 =========
+# query: is the black block in the silver bowl
+```generated:
+# THINK: The black block is on the table and the silver bowl is empty
+say("no")
+```
+```gold:
+say("no")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {"location": "table", "contains": ["yellow block"]},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {"location": "white block"},
+#      “silver bowl”: {},
+#      "golden bowl": {"contains": ["silver block"]},
+# }
+========= step 9 =========
+# query: which block is in the middle of the stack in the golden bowl
+```generated:
+# THINK: The golden bowl contains the silver block, which is in the middle of the stack
+say("silver block")
+```
+```gold:
+say("white block")
+```
+
+# state = {
+#     "objects": ["white block", "silver block", "black block", "gray block", "yellow block", "silver bowl", "golden bowl"],
+#      "relations": [],
+#      “white block": {"location": "table", "contains": ["yellow block"]},
+#      “silver block": {"location": "golden bowl"},
+#      “black block": {"location": "table", "contains": ["gray block"]},
+#      “gray block": {"location": "black block"},
+#      "yellow block": {"location": "white block"},
+#      “silver bowl”: {},
+#      "golden bowl": {"contains": ["silver block"]},
+# }

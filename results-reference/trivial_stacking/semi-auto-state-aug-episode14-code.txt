@@ -1,0 +1,10 @@
+========= step 0 =========
+========= step 5 =========
+>> generated
+# THINK: The gray block is on the white block, which is on the orange bowl. The orange bowl contains the white block and the gray block. The orange block is in the plastic bowl. The red block is on the orange block.
+#
+say("three blocks")
+---------
+>> gold
+say("two blocks")
+---------
