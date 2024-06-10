@@ -14,6 +14,11 @@ $ pip install -e .
 ```
 If things fail, you can look at `pyproject.toml` to find dependencies. (If you use pdm, you should be able to just run `pdm install`)
 
+Then, please set your `OPENAI_API_KEY`:
+``` sh
+$ export OPENAI_API_KEY='sk-xxxxxxxxxxxxxxx'
+```
+
 ## What you can play with
 **Running a minimal demo**
 ``` sh
