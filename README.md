@@ -58,8 +58,7 @@ If you find our work useful in your research, please consider citing the paper a
   title={Statler: State-Maintaining Language Models for Embodied Reasoning}, 
   author={Takuma Yoneda and Jiading Fang and Peng Li and Huanyu Zhang and 
   Tianchong Jiang and Shengjie Lin and Ben Picker and David Yunis and Hongyuan Mei and Matthew R. Walter},
-  booktitle={2024 International Conference on Robotics and Automation (ICRA)},
+  booktitle={Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)},
   year={2024},
-  organization={IEEE}
 }
 ```
